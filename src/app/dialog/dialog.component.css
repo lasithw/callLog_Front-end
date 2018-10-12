@@ -1,0 +1,18 @@
+
+.dialog{
+    background-color: slategrey; 
+    margin-bottom:25px;
+}
+
+h1{
+    padding-left: 10px;
+}
+
+p{
+    text-align: center;
+}
+
+button{
+    display: block;
+    margin: auto;
+}

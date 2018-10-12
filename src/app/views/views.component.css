@@ -1,0 +1,65 @@
+
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .user_card{
+    max-width: 300px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(184, 184, 252);
+    display: block;
+    margin: auto;
+  }
+
+  .mat-card-title{
+    font-size: 20px;
+  }
+
+  .mat-card-content{
+    font-size: 15px;
+  }
+
+  .mat-card{
+    background-color: darkgray;
+  }
+
+
+  table {
+    width: 95%;
+  }
+
+  th{
+    font-size: 20px;
+    -webkit-text-fill-color: black;
+    background-color:  gray;
+  }
+
+  td{
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    display: block;
+  }
+  
+  .example-margin {
+    margin: 0 15px;
+  }
+
+  .button-row button,
+  .button-row a {
+    margin-right: 8px;
+  }
