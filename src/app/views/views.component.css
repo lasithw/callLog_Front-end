@@ -24,7 +24,7 @@
   }
 
   .mat-card{
-    background-color: darkgray;
+    background-color: gray;
   }
 
 
@@ -33,13 +33,15 @@
   }
 
   th{
-    font-size: 20px;
+    font-size: 12px;
     -webkit-text-fill-color: black;
     background-color:  gray;
+    text-align: center;
+    font-weight: bold;
   }
 
   td{
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
   }
 

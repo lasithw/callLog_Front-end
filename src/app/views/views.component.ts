@@ -1,22 +1,24 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { CallLogService } from '../../service/call-log.service';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
-  no: number;
-  type: string;
-  category: string;
-  reg_user: string;
+  ID: number;
+  callType: string;
+  agent: string;
+  callerID: string;
+  callTime: string;
+  event: string;
+  holdTime: string;
+  queueName: string;
+  time: string;
+  totalTime: string;
 }
 
-
 const ELEMENT_DATA: PeriodicElement[] = [
-  { no: 1, type: 'incomming', category: 'All Alarms', reg_user: 'yasith' },
-  { no: 2, type: 'outgoing', category: 'sdsadas', reg_user: 'deef' },
-  { no: 3, type: 'incomming', category: 'sdssadaadas', reg_user: 'eesadam' },
-  { no: 4, type: 'incomming', category: 'fggrsdsadas', reg_user: 'sfwradam' },
-  { no: 5, type: 'outgoing', category: 'gtggsdsadas', reg_user: 'wersadam' },
-  { no: 6, type: 'outgoing', category: 'wwsdsadas', reg_user: 'ggsadam' },
+  { ID: 1, callType: 'incomming', agent: 'All Alarms', callerID: 'yasith', callTime: 'sdfsd', event: 'dffds', holdTime: 'sasad', queueName: 'ccad', time: 'dsad', totalTime: 'dsd' },
 ];
 
 @Component({
@@ -25,25 +27,43 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./views.component.css']
 })
 
-
 export class ViewsComponent implements OnInit {
 
   user = "saddd";
+  incoming = this.in();
+  outgoing = this.out();
 
   get UserName() {
     return this.user;
   }
+
+  in() {
+    this.callLogService.incoming();
+  };
+
+  out() {
+    this.callLogService.outgoing();
+  }
+
 
   checked = false;
   indeterminate = false;
   labelPosition = 'after';
   disabled = false;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
+  dataSource = this.getData();
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router) { }
+
+
+  ngOnInit() {
+  }
+
+  getData() {
+    this.callLogService.getData();
+  }
 
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
@@ -55,7 +75,5 @@ export class ViewsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
 
 }

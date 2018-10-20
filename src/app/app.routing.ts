@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ViewsComponent } from './views/views.component';
 import { LogingComponent } from './loging/loging.component';
-import { ViewCompiler } from '@angular/compiler/src/view_compiler/view_compiler';
 
 export const routes: Routes = [
     {
@@ -20,6 +19,11 @@ export const routes: Routes = [
 
     {
         path: 'loging',
+        component: LogingComponent
+    },
+
+    {
+        path: '',
         component: LogingComponent
     },
 

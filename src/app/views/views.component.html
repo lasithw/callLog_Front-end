@@ -41,28 +41,55 @@
 
 <!-- table -->
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- number Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
       </ng-container>
 
-      <!-- type Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      <ng-container matColumnDef="callType">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> CallType </th>
+        <td mat-cell *matCellDef="let element"> {{element.callType}} </td>
       </ng-container>
 
-      <!-- category Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Category </th>
-        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      <ng-container matColumnDef="agent">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Agent </th>
+        <td mat-cell *matCellDef="let element"> {{element.agent}} </td>
       </ng-container>
 
-      <!-- reg_user -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Reg_user </th>
-        <td mat-cell *matCellDef="let element"> {{element.reg_user}} </td>
+      <ng-container matColumnDef="callerID">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> CallerID </th>
+        <td mat-cell *matCellDef="let element"> {{element.callerID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="callTime">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> CallTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.callTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="event">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Event </th>
+        <td mat-cell *matCellDef="let element"> {{element.event}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="holdTime">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> HoldTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.holdTime}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="queueName">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> QueueName </th>
+        <td mat-cell *matCellDef="let element"> {{element.queueName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalTime">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> TotalTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalTime}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

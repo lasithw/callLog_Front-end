@@ -1,15 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-
+import { HttpClientModule} from '@angular/common/http';
 import {
   MatButtonModule,
   MatToolbarModule,
   MatCardModule,
   MatTableModule,
   MatCheckboxModule,
-  MatCheckbox,
   MatDividerModule,
   MatDialogModule,
   MatInputModule,
@@ -17,10 +15,10 @@ import {
   MatIconModule,
   MatProgressSpinnerModule
 } from '@angular/material';
-
 import { BsDropdownModule } from 'ngx-bootstrap'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing';
+import { CallLogService } from '../service/call-log.service';
 
 import { AppComponent } from './app.component';
 import { ViewsComponent } from './views/views.component';
@@ -55,7 +53,8 @@ import { LogingComponent } from './loging/loging.component';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -73,7 +72,7 @@ import { LogingComponent } from './loging/loging.component';
     MatProgressSpinnerModule
   ],
 
-  providers: [],
+  providers: [CallLogService],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })
