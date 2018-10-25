@@ -21,12 +21,8 @@ export class CallLogService {
       })
     }
 
-    let obs = this.http.get(this.uri + '/data/getData', httpOptions);
-    obs.subscribe(res => {
-      this.data = res;
-      console.log(this.data);
-      var sample = JSON.stringify(res);
-    });
+    return this.http.get(this.uri + '/data/getData', httpOptions);
+    
 
   }
 
@@ -38,13 +34,7 @@ export class CallLogService {
       })
     }
 
-    let obs = this.http.get(this.uri + '/data/callType/?i=incoming', httpOptions);
-    obs.subscribe(res => {
-      this.data = res[0].callcount;
-      console.log(this.data);
-      // var sample = JSON.stringify(res);
-    });
-
+    return this.http.get(this.uri + '/data/callType/?i=incoming', httpOptions);
   }
 
   outgoing() {
@@ -55,12 +45,18 @@ export class CallLogService {
       })
     }
 
-    let obs = this.http.get(this.uri + '/data/callType/?i=outgoing', httpOptions);
-    obs.subscribe(res => {
-      this.data = res[0].callcount;
-      console.log(this.data);
-      // var sample = JSON.stringify(res);
-    });
+    return this.http.get(this.uri + '/data/callType/?i=outgoing', httpOptions);
+  }
+
+  getCallLogData() {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this.http.get(this.uri + '/data/getCallLogData', httpOptions);
+    
 
   }
 

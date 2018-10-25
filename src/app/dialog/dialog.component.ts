@@ -9,8 +9,6 @@ import { ViewsComponent } from '../views/views.component';
 })
 export class DialogComponent implements OnInit {
 
-  user = "qsaqdad";
-
 constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
 
   onClose(){

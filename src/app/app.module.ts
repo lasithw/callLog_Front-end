@@ -13,7 +13,8 @@ import {
   MatInputModule,
   MatMenuModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { BsDropdownModule } from 'ngx-bootstrap'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,7 @@ import { ViewsComponent } from './views/views.component';
 import { CommonModule } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
 import { LogingComponent } from './loging/loging.component';
+import { CallLogTableComponent } from './call-log-table/call-log-table.component';
 
 
 
@@ -33,7 +35,8 @@ import { LogingComponent } from './loging/loging.component';
     AppComponent,
     ViewsComponent,
     DialogComponent,
-    LogingComponent
+    LogingComponent,
+    CallLogTableComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { LogingComponent } from './loging/loging.component';
     MatDialogModule,
     MatInputModule,
     MatMenuModule,
+    MatSnackBarModule,
     MatIconModule,
     MatProgressSpinnerModule,
     FormsModule,
@@ -67,6 +71,7 @@ import { LogingComponent } from './loging/loging.component';
     MatDialogModule,
     MatDialogModule,
     MatInputModule,
+    MatSnackBarModule,
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule

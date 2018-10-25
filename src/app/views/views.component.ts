@@ -1,25 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBarModule } from '@angular/material';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { CallLogService } from '../../service/call-log.service';
 import { Router } from '@angular/router';
 
-export interface PeriodicElement {
-  ID: number;
-  callType: string;
-  agent: string;
-  callerID: string;
-  callTime: string;
-  event: string;
-  holdTime: string;
-  queueName: string;
-  time: string;
-  totalTime: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { ID: 1, callType: 'incomming', agent: 'All Alarms', callerID: 'yasith', callTime: 'sdfsd', event: 'dffds', holdTime: 'sasad', queueName: 'ccad', time: 'dsad', totalTime: 'dsd' },
-];
 
 @Component({
   selector: 'app-views',
@@ -30,20 +14,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ViewsComponent implements OnInit {
 
   user = "saddd";
-  incoming = this.in();
-  outgoing = this.out();
+  incoming = this.incomingCall();
+  outgoing = this.outgoingCall();
+  inCallCount: any;
+  outCallCount: any;
 
-  get UserName() {
-    return this.user;
+  ngOnInit() {
+    this.incomingCall();
+    this.outgoingCall();
   }
 
-  in() {
-    this.callLogService.incoming();
+  incomingCall() {
+    this.callLogService.incoming().subscribe(data => {
+      // console.log(data[0].callcount);
+      this.inCallCount = data[0].callcount;
+    });
   };
 
-  out() {
-    this.callLogService.outgoing();
-  }
+  outgoingCall() {
+    this.callLogService.outgoing().subscribe(data => {
+      // console.log(data[0].callcount);
+      this.outCallCount = data[0].callcount;
+    });
+  };
+
 
 
   checked = false;
@@ -54,15 +48,24 @@ export class ViewsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
   dataSource = this.getData();
 
-
   constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router) { }
-
-
-  ngOnInit() {
-  }
+  data;
 
   getData() {
-    this.callLogService.getData();
+    this.callLogService.getData().subscribe(res => {
+      this.data = res;
+      // console.log(this.data);
+      var sample = JSON.stringify(res);
+    });
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
+  onSubmit(){
+    this.openDialog();
+    // this.onSelect();
   }
 
   openDialog(): void {
@@ -73,6 +76,10 @@ export class ViewsComponent implements OnInit {
       width: '500px'
 
     });
+  }
+
+  onSelect(selectedItem: any) {
+    console.log("Selected item Id: ", selectedItem.ID); // You get the Id of the selected item here
   }
 
 

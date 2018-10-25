@@ -1,4 +1,20 @@
 
+  .page{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .mat-toolbar{
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+
+  span{
+    font-size: 30px;
+    padding-left:20px;
+  }
+
   .example-icon {
     padding: 0 14px;
   }
@@ -10,9 +26,10 @@
   .user_card{
     max-width: 300px;
     color: rgb(0, 0, 0);
-    background-color: rgb(184, 184, 252);
+    background-color: grey;
     display: block;
     margin: auto;
+    margin-bottom: 40px;
   }
 
   .mat-card-title{
@@ -21,15 +38,30 @@
 
   .mat-card-content{
     font-size: 15px;
+    padding: 1px;
   }
 
   .mat-card{
     background-color: gray;
+    padding: 5px;
+  }
+
+  .table_card{
+    max-width: 96%;
+    max-height: 40px;
   }
 
 
   table {
-    width: 95%;
+    width: 98%;
+  }
+
+  .table-wrapper-scroll-y {
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-bottom: 20px;
   }
 
   th{
@@ -41,8 +73,14 @@
   }
 
   td{
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
+  }
+  h3{
+    padding-left: 15px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;  
   }
 
   .example-h2 {
@@ -53,15 +91,19 @@
     display: flex;
     align-content: center;
     align-items: center;
-    height: 60px;
     display: block;
+    margin-bottom: 15px; 
+    margin-top: 15px;
+
   }
   
   .example-margin {
-    margin: 0 15px;
+    margin: 0 10px;
+    font-size: 12px;
   }
 
   .button-row button,
-  .button-row a {
-    margin-right: 8px;
+  .button-row {
+    margin-top: 8px;
+    margin-left: 5%;
   }
