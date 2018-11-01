@@ -1,3 +1,9 @@
+
+.page{
+    padding-top: 30px;
+    margin-bottom: 10px;
+}
+
 .login-card{
     max-width:  20%;
     color: rgb(0, 0, 0);
@@ -5,4 +11,8 @@
     display: block;
     margin: auto;
 }
+
+span{
+    font-size: 30px;
+  }
 

@@ -26,7 +26,7 @@
   .user_card{
     max-width: 300px;
     color: rgb(0, 0, 0);
-    background-color: grey;
+    background-color: rgb(211, 208, 208);
     display: block;
     margin: auto;
     margin-bottom: 40px;
@@ -42,8 +42,12 @@
   }
 
   .mat-card{
-    background-color: gray;
+    background-color: rgb(211, 208, 208);
     padding: 5px;
+  }
+
+  .check_card{
+    margin-bottom: 30px;
   }
 
   .table_card{
@@ -58,7 +62,7 @@
 
   .table-wrapper-scroll-y {
     display: block;
-    max-height: 400px;
+    max-height: 440px;
     overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     margin-bottom: 20px;
@@ -106,4 +110,8 @@
   .button-row {
     margin-top: 8px;
     margin-left: 5%;
+  }
+  
+  button:focus{
+    background:blue;
   }

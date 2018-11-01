@@ -19,7 +19,7 @@ export class CallLogTableComponent implements OnInit {
   labelPosition = 'after';
   disabled = false;
 
-  displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime', 'date', 'category', 'mainCategory'];
+  displayedColumns: string[] = ['id', 'user', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime', 'date', 'category', 'mainCategory'];
   dataSource = this.getCallLogData();
 
   constructor(public callLogService: CallLogService, private router: Router) { }
