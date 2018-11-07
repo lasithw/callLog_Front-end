@@ -1,4 +1,8 @@
-
+.background{
+    background-image: url("src/assets/background2.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+  }
 .page{
     padding-top: 30px;
     margin-bottom: 10px;
@@ -7,12 +11,18 @@
 .login-card{
     max-width:  20%;
     color: rgb(0, 0, 0);
-    background-color: darkgrey;
+    background-color:rgb(196, 201, 248);
     display: block;
     margin: auto;
+    opacity: 0.8;
+    margin-top: 8%;
 }
 
 span{
     font-size: 30px;
   }
+
+.footer{
+    margin-top: 18%;
+}
 

@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatSnackBarModule } from '@angular/material';
+import { error } from 'util';
+
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { CallLogService } from '../../service/call-log.service';
-import { Router } from '@angular/router';
+import { InfoComponent } from '../info/info.component';
 import { LogingComponent } from '../loging/loging.component';
 import { NgModel } from '@angular/forms';
-import { error } from 'util';
+import { SelectionModel } from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-views',
@@ -15,10 +19,10 @@ import { error } from 'util';
 
 export class ViewsComponent implements OnInit {
 
-  user = "saddd";
+  user = "aaaa";
   incoming = this.incomingCall();
   outgoing = this.outgoingCall();
-  todayCallCount = this.todayCall();
+  todayCallCountt = this.todayCall();
   count: any;
   inCallCount: any;
   outCallCount: any;
@@ -56,7 +60,7 @@ export class ViewsComponent implements OnInit {
   labelPosition = 'after';
   disabled = false;
 
-  displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
+  // displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
   dataSource = this.getData();
 
   constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router) { }
@@ -78,7 +82,7 @@ export class ViewsComponent implements OnInit {
   onSubmit() {
     this.addCallLogData();
     this.refresh();
-    if (!error) {
+    if (error) {
       this.openDialog();
     }
     this.deleteRow(this.selected.ID);
@@ -94,13 +98,21 @@ export class ViewsComponent implements OnInit {
     });
   }
 
+  info() {
+    console.log("ssddadadawdwad");
+  }
+
   selected;
+  CallerID: string;
+  SelectedID;
 
   onSelect(selectedItem: any) {
     console.log("Selected item Id: ", selectedItem.ID);
     this.selected = selectedItem;
+    this.SelectedID = selectedItem.ID;
+    this.CallerID = selectedItem.CallerID;
   }
-  
+
   addCallLogData() {
     var date = new Date()
 
@@ -137,7 +149,7 @@ export class ViewsComponent implements OnInit {
       }
       else {
         this.checkbox = this.checkbox + ",  " + category.value;
-        this.main = this.main +", "+ main;
+        this.main = this.main + ", " + main;
       }
 
     }

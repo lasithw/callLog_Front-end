@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ViewsComponent } from './views/views.component';
 import { LogingComponent } from './loging/loging.component';
 import { CallLogTableComponent } from './call-log-table/call-log-table.component';
+import { InfoComponent } from './info/info.component';
 
 export const routes: Routes = [
     {
@@ -15,7 +16,12 @@ export const routes: Routes = [
 
     {
         path: 'view',
-        component: ViewsComponent
+        component: ViewsComponent,
+    },
+
+    {
+        path: 'info',
+        component: InfoComponent,
     },
 
     {

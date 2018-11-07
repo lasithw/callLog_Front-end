@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
 import { LogingComponent } from './loging/loging.component';
 import { CallLogTableComponent } from './call-log-table/call-log-table.component';
+import { InfoComponent } from './info/info.component';
 
 
 
@@ -36,7 +37,8 @@ import { CallLogTableComponent } from './call-log-table/call-log-table.component
     ViewsComponent,
     DialogComponent,
     LogingComponent,
-    CallLogTableComponent
+    CallLogTableComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

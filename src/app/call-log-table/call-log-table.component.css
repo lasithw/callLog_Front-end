@@ -14,18 +14,20 @@
   }
 
   .mat-toolbar{
-    background-color: rgb(211, 208, 208);
+    background-color:rgb(196, 201, 248);
     height: 45px;
+    opacity: 0.8;
   }
   
   table {
     width: 100%;
+    opacity: 0.8;
   }
 
   th{
     font-size: 12px;
     -webkit-text-fill-color: black;
-    background-color:  gray;
+    background-color: royalblue;
     text-align: center;
     font-weight: bold;
   }
@@ -33,6 +35,7 @@
   td{
     font-size: 11px;
     text-align: center;
+    font-weight: bold;
   }
   h3{
     padding-left: 15px;
