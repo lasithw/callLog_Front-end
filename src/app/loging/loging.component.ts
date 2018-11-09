@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthenticationService, TokenPayload } from '../../service/authentication.service';
 
 @Component({
   selector: 'app-loging',
@@ -8,18 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./loging.component.css']
 })
 export class LogingComponent implements OnInit {
-  constructor(private router: Router) { }
-  username: string;
-  password: string;
+
+  constructor(private auth: AuthenticationService, private router: Router) {}
+
+  password : string =  "";
+  username : string =  "";
+
+
+  
 
   ngOnInit() {
   }
 
-  login(): void {
-    if (this.username == 'admin' && this.password == 'admin') {
-      this.router.navigateByUrl('/view');
-    } else {
-      alert("Invalid credentials");
+  login() {
+    var credentials: TokenPayload = {
+      username: this.username,
+      password:  this.password
     }
+    this.auth.login(credentials).subscribe(
+      (data) => {
+        console.log(data)
+        this.router.navigateByUrl('/view')
+        
+      },
+      err => {
+        console.error(err)
+      }
+    )
   }
 }

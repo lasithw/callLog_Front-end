@@ -118,9 +118,14 @@
   }
 
   .button-row button,
-  .button-row {
+  .button-row{
     margin-top: 8px;
-    margin-left: 5%;
+    margin-left: 4%;
+    margin-right: 5%;
+  }
+
+  button{
+    margin-left: 1%;
   }
   
   button:focus{

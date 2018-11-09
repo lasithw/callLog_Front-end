@@ -9,6 +9,7 @@ import { InfoComponent } from '../info/info.component';
 import { LogingComponent } from '../loging/loging.component';
 import { NgModel } from '@angular/forms';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AuthenticationService } from 'src/service/authentication.service';
 
 
 @Component({
@@ -32,6 +33,11 @@ export class ViewsComponent implements OnInit {
     this.todayCall();
     this.incomingCall();
     this.outgoingCall();
+    this.name();
+  }
+
+  name(){
+    
   }
 
   incomingCall() {
@@ -63,7 +69,8 @@ export class ViewsComponent implements OnInit {
   // displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
   dataSource = this.getData();
 
-  constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router) { }
+  constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router,
+    private auth: AuthenticationService) { }
 
   data;
 
@@ -161,5 +168,9 @@ export class ViewsComponent implements OnInit {
       // console.log(this.data);
       var sample = JSON.stringify(res);
     });
+  }
+
+  logout(){
+this.auth.logout();
   }
 }

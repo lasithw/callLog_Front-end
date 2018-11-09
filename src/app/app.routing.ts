@@ -5,6 +5,7 @@ import { ViewsComponent } from './views/views.component';
 import { LogingComponent } from './loging/loging.component';
 import { CallLogTableComponent } from './call-log-table/call-log-table.component';
 import { InfoComponent } from './info/info.component';
+import { AuthGuardService } from 'src/service/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -17,11 +18,13 @@ export const routes: Routes = [
     {
         path: 'view',
         component: ViewsComponent,
+        canActivate : [AuthGuardService]
     },
 
     {
         path: 'info',
         component: InfoComponent,
+        canActivate : [AuthGuardService]
     },
 
     {

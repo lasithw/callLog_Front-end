@@ -8,6 +8,7 @@
       <span class="example-spacer"></span>
       <span class="align-center"></span>
       <button mat-raised-button routerLink="/info">Info</button>
+      <button mat-raised-button color="warn"(click) = "logout()">Logout</button>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -168,7 +169,6 @@
               <div class="button-row">
                 <button mat-raised-button (click)="refresh()">Back</button>
                 <button mat-raised-button (click)="onSubmit()" color="primary">Submit</button>
-                <button mat-raised-button color="warn" routerLink="/loging">Logout</button>
               </div>
             </mat-card-content>
           </mat-card>

@@ -1,47 +1,52 @@
 <div class="page">
 
   <mat-toolbar>
-      <span><strong>Call Log</strong></span>
+    <span><strong>Call Log</strong></span>
   </mat-toolbar>
 
   <!-- table -->
   <div class="table-wrapper-scroll-y">
-  <table class="table table-bordered table-light table-sm">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>User</th>
-        <th>CallType</th>
-        <th>Agent</th>
-        <th>CallerID</th>
-        <th>CallTime</th>
-        <th>Event</th>
-        <th>HoldTime</th>
-        <th>QueueName</th>
-        <th>Time</th>
-        <th>TotalTime</th>
-        <th>Date</th>
-        <th>Category</th>
-        <th>MainCategory</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let d of data">
-        <td>{{d.id}}</td>
-        <td>{{d.user}}</td>
-        <td>{{d.callType}}</td>
-        <td>{{d.agent}}</td>
-        <td>{{d.callerID}}</td>
-        <td>{{d.callTime}}</td>
-        <td>{{d.event}}</td>
-        <td>{{d.holdTime}}</td>
-        <td>{{d.queueName}}</td>
-        <td>{{d.time}}</td>
-        <td>{{d.totalTime}}</td>
-        <td>{{d.date}}</td>
-        <td>{{d.category}}</td>
-        <td>{{d.mainCategory}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-bordered table-light table-sm">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>CallType</th>
+          <th>Agent</th>
+          <th>CallerID</th>
+          <th>CallTime</th>
+          <th>Event</th>
+          <th>HoldTime</th>
+          <th>QueueName</th>
+          <th>Time</th>
+          <th>TotalTime</th>
+          <th>Date</th>
+          <th>Category</th>
+          <th>MainCategory</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of data">
+          <td>{{d.id}}</td>
+          <td>{{d.user}}</td>
+          <td>{{d.callType}}</td>
+          <td>{{d.agent}}</td>
+          <td>{{d.callerID}}</td>
+          <td>{{d.callTime}}</td>
+          <td>{{d.event}}</td>
+          <td>{{d.holdTime}}</td>
+          <td>{{d.queueName}}</td>
+          <td>{{d.time}}</td>
+          <td>{{d.totalTime}}</td>
+          <td>{{d.date}}</td>
+          <td>{{d.category}}</td>
+          <td>{{d.mainCategory}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <div class="footer">
+    <p>Call Log</p>
+  </div>
+
 </div>

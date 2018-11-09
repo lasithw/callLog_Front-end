@@ -27,7 +27,7 @@ export class InfoComponent implements OnInit {
   totalcall() {
     this.infoService.totalcall().subscribe(res => {
       this.data = res;
-      console.log(this.data);
+      // console.log(this.data);
       var sample = JSON.stringify(res);
     });
   }
