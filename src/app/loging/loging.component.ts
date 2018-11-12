@@ -14,9 +14,6 @@ export class LogingComponent implements OnInit {
   password : string =  "";
   username : string =  "";
 
-
-  
-
   ngOnInit() {
   }
 
@@ -27,10 +24,11 @@ export class LogingComponent implements OnInit {
     }
     this.auth.login(credentials).subscribe(
       (data) => {
+        // console.log(data['username'])
         console.log(data)
         this.router.navigateByUrl('/view')
         
-      },
+      } ,
       err => {
         console.error(err)
       }

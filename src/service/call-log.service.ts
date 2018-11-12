@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from 'src/service/authentication.service';
 
 let httpOptions = {
   headers: new HttpHeaders({
@@ -13,10 +14,17 @@ let httpOptions = {
 
 export class CallLogService {
   public data: any;
+  username: string;
+  user = this.name();
 
   uri = 'http://localhost:3002';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  }
+
+  name(): any {
+    return this.username = this.auth.getUsername();
+    // console.log('aaaaa '+this.username);
   }
 
 
@@ -39,7 +47,8 @@ export class CallLogService {
   }
 
   getCallLogData() {
-    return this.http.get(this.uri + '/data/getCallLogData', httpOptions);
+    console.log('aaa '+this.username);
+    return this.http.get(this.uri + '/data/getCallLogData/?user='+this.user, httpOptions);
   }
 
   addCallLog(callLogData) {

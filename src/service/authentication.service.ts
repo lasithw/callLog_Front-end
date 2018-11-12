@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators'
 
 export interface UserDetails {
-  
+
   username: string
   password: string
   exp: number
@@ -19,7 +19,7 @@ interface TokenResponse {
 export interface TokenPayload {
   username: string
   password: string
-} 
+}
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +27,20 @@ export interface TokenPayload {
 export class AuthenticationService {
   uri = 'http://localhost:3002';
 
-  private token: string
+  private token: string;
+  private username: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   private saveToken(token: string): void {
     localStorage.setItem('usertoken', token)
     this.token = token
+  }
+
+  private saveUser(username: string): void {
+    localStorage.setItem('user', username);
+    this.username = username;
+    // console.log(username);
   }
 
   private getToken(): string {
@@ -43,16 +50,27 @@ export class AuthenticationService {
     return this.token
   }
 
+  private getUser(): string{
+    if (!this.username) {
+      this.username = localStorage.getItem('user')
+    }
+    return this.username
+  }
+
   public getUserDetails() {
     const token = this.getToken()
     let payload
     if (token) {
-      //payload = token.split('.')[1]
-      //payload = window.atob(payload)
       return token
     } else {
       return null
     }
+  }
+
+  public getUsername() {
+    const username = this.getUser()
+      return this.username
+
   }
 
   public isLoggedIn(): boolean {
@@ -65,30 +83,30 @@ export class AuthenticationService {
     }
   }
 
-  public login(user : TokenPayload): Observable<any> {
+  public login(user: TokenPayload): Observable<any> {
     var httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     }
     const base = this.http.post(this.uri + '/login/login', user, httpOptions)
-    console.log(user.username);
 
     const request = base.pipe(
       map((data) => {
         if (data['token']) {
-          this.saveToken(data['token'])
+          this.saveToken(data['token']);
+          this.saveUser(data['username']);
         }
-        return data
+        console.log(data['username']);
+        return data;
       })
     )
-
     return request
   }
 
   public logout(): void {
     this.token = ''
     window.localStorage.removeItem('usertoken')
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/loging')
   }
 }

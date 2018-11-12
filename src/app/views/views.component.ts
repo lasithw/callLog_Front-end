@@ -20,7 +20,7 @@ import { AuthenticationService } from 'src/service/authentication.service';
 
 export class ViewsComponent implements OnInit {
 
-  user = "aaaa";
+  user = this.name();
   incoming = this.incomingCall();
   outgoing = this.outgoingCall();
   todayCallCountt = this.todayCall();
@@ -28,35 +28,30 @@ export class ViewsComponent implements OnInit {
   inCallCount: any;
   outCallCount: any;
   main: any;
+  username: string;
 
   ngOnInit() {
-    this.todayCall();
-    this.incomingCall();
-    this.outgoingCall();
-    this.name();
   }
 
-  name(){
-    
+  name(): any {
+    return this.auth.getUsername();
+    // console.log('aaaaa '+this.username);
   }
 
   incomingCall() {
     this.callLogService.incoming().subscribe(data => {
-      // console.log(data[0].callcount);
       this.inCallCount = data[0].callcount;
     });
   };
 
   outgoingCall() {
     this.callLogService.outgoing().subscribe(data => {
-      // console.log(data[0].callcount);
       this.outCallCount = data[0].callcount;
     });
   };
 
   todayCall() {
     this.callLogService.todayCallCount().subscribe(data => {
-      // console.log(data[0].callcount);
       this.count = data[0].todaycount;
     });
   };
@@ -66,7 +61,6 @@ export class ViewsComponent implements OnInit {
   labelPosition = 'after';
   disabled = false;
 
-  // displayedColumns: string[] = ['id', 'callType', 'agent', 'callerID', 'callTime', 'event', 'holdTime', 'queueName', 'time', 'totalTime'];
   dataSource = this.getData();
 
   constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router,
@@ -77,7 +71,6 @@ export class ViewsComponent implements OnInit {
   getData() {
     this.callLogService.getData().subscribe(res => {
       this.data = res;
-      // console.log(this.data);
       var sample = JSON.stringify(res);
     });
   }
@@ -89,7 +82,7 @@ export class ViewsComponent implements OnInit {
   onSubmit() {
     this.addCallLogData();
     this.refresh();
-    if (error) {
+    if (!error) {
       this.openDialog();
     }
     this.deleteRow(this.selected.ID);
@@ -103,10 +96,6 @@ export class ViewsComponent implements OnInit {
       width: '500px'
 
     });
-  }
-
-  info() {
-    console.log("ssddadadawdwad");
   }
 
   selected;
@@ -170,7 +159,7 @@ export class ViewsComponent implements OnInit {
     });
   }
 
-  logout(){
-this.auth.logout();
+  logout() {
+    this.auth.logout();
   }
 }
