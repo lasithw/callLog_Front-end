@@ -27,11 +27,18 @@ export class LogingComponent implements OnInit {
         // console.log(data['username'])
         console.log(data)
         this.router.navigateByUrl('/view')
+        this.refresh();
         
       } ,
       err => {
+        // if(err)
+        // alert("Inavalid Input");
         console.error(err)
       }
     )
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

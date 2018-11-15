@@ -97,7 +97,7 @@ export class AuthenticationService {
           this.saveToken(data['token']);
           this.saveUser(data['username']);
         }
-        console.log(data['username']);
+        // console.log(data['username']);
         return data;
       })
     )
@@ -106,7 +106,8 @@ export class AuthenticationService {
 
   public logout(): void {
     this.token = ''
-    window.localStorage.removeItem('usertoken')
+    window.localStorage.removeItem('usertoken');
+    window.localStorage.removeItem('user');
     this.router.navigateByUrl('/loging')
   }
 }

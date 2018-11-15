@@ -34,20 +34,19 @@ export class CallLogService {
 
 
   incoming() {
-    return this.http.get(this.uri + '/data/callType/?i=incoming', httpOptions);
+    return this.http.get(this.uri + '/data/callType/?i=incoming&user='+this.name(), httpOptions);
   }
 
 
   outgoing() {
-    return this.http.get(this.uri + '/data/callType/?i=outgoing', httpOptions);
+    return this.http.get(this.uri + '/data/callType/?i=outgoing&user='+this.name(), httpOptions);
   }
 
   todayCallCount() {
-    return this.http.get(this.uri + '/data/todayCall', httpOptions);
+    return this.http.get(this.uri + '/data/todayCall/?user='+this.name(), httpOptions);
   }
 
   getCallLogData() {
-    console.log('aaa '+this.username);
     return this.http.get(this.uri + '/data/getCallLogData/?user='+this.user, httpOptions);
   }
 
