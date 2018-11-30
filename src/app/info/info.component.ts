@@ -9,12 +9,6 @@ import { InfoService } from '../../service/info.service';
 })
 export class InfoComponent implements OnInit {
 
-  // tcall: any;
-  // inCall: any;
-  // outCall: any;
-  // main: any;
-
-  // displayedColumns: string[] = ['user', 'totalCall', 'incoming', 'outgoing'];
   dataSource = this.totalcall();
 
   constructor(public infoService: InfoService, private router: Router) { }

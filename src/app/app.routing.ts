@@ -5,6 +5,7 @@ import { ViewsComponent } from './views/views.component';
 import { LogingComponent } from './loging/loging.component';
 import { CallLogTableComponent } from './call-log-table/call-log-table.component';
 import { InfoComponent } from './info/info.component';
+import { SummaryComponent } from './summary/summary.component';
 import { AuthGuardService } from 'src/service/auth-guard.service';
 
 export const routes: Routes = [
@@ -35,6 +36,11 @@ export const routes: Routes = [
     {
         path: 'addCollLog',
         component: CallLogTableComponent
+    },
+
+    {
+        path: 'summary',
+        component: SummaryComponent
     },
 
     {

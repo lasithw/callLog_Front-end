@@ -1,177 +1,190 @@
 <div class="background">
-
-  <!-- header -->
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span><img src="./assets/mobitel1.jpg"></span>
-      <span><strong>CALL LOG</strong></span>
-      <span class="example-spacer"></span>
-      <span class="align-center"></span>
-      <button mat-raised-button routerLink="/info">Info</button>
-      <button mat-raised-button color="warn"(click) = "logout()">Logout</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
   <div class="page">
-    <!-- user card -->
-    <mat-card class="user_card">
-      <mat-card-header>
-        <mat-card-title>
-          <b>Logged User : {{user}}</b>
-        </mat-card-title>
-      </mat-card-header>
 
-      <mat-card-content>
-        <P>Today call count : {{count}}</P>
-        <p>Incoming : {{inCallCount}}</p>
-        <p>Outgoing : {{outCallCount}}</p>
-      </mat-card-content>
-    </mat-card>
+    <!-- header -->
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span><img src="./assets/mobitel1.jpg"></span>
+        <span><strong>CALL LOG</strong></span>
+        <span class="example-spacer"></span>
+        <span class="align-center"></span>
 
-    <!-- table -->
-    <div style="width: 100%;">
-      <div style="float:left; width:68%">
-        <mat-card class="table_card">
-          <mat-card-header>
-            <mat-card-title>
-              <b>Incoming and Outgoing Users</b>
-            </mat-card-title>
-          </mat-card-header>
-        </mat-card>
-        <div class="table-wrapper-scroll-y">
-          <table class="table table-bordered table-light table-sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>CallType</th>
-                <th>Agent</th>
-                <th>CallerID</th>
-                <th>CallTime</th>
-                <th>Event</th>
-                <th>HoldTime</th>
-                <th>QueueName</th>
-                <th>Time</th>
-                <th>TotalTime</th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let d of data">
-                <td>{{d.ID}}</td>
-                <td>{{d.CallType}}</td>
-                <td>{{d.Agent}}</td>
-                <td>{{d.CallerID}}</td>
-                <td>{{d.CallTime}}</td>
-                <td>{{d.Event}}</td>
-                <td>{{d.HoldTime}}</td>
-                <td>{{d.QueueName}}</td>
-                <td>{{d.Time}}</td>
-                <td>{{d.TotalTime}}</td>
-                <button type="button" (click)="onSelect(d)" class="glyphicon glyphicon-check" style="font-size: 10px;">Select</button>
-              </tr>
-            </tbody>
-          </table>
+        <div class="col text-right">
+          <div ngbDropdown placement="bottom-right" class="d-inline-block">
+            <button class="btn" id="dropdown" ngbDropdownToggle>More</button>
+            <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdown">
+              <button class="dropdown-item" routerLink="/info">Info</button>
+              <button class="dropdown-item" routerLink="/summary">Summary</button>
+              <button class="dropdown-item" (click)="logout()">Logout</button>
+            </div>
+          </div>
         </div>
-      </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-      <!-- checkboxes -->
-      <div style="float:right;width: 30%">
-        <div class="check_card">
-          <mat-card>
-            <mat-card-title>
-              <b>Selected ID : {{SelectedID}}</b><br> <b>Caller ID: {{CallerID}}</b>
-            </mat-card-title>
-            <mat-card-content>
-              <section class="example-section">
-                <mat-checkbox class="example-margin" [(ngModel)]="allAlarms" #catallAlarm value="All Alarm" main="All Alarms"
-                  (change)="checkValue($event, catallAlarm, 'All Alarms')">
-                  <b>All Alarms</b>
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="wifi" #catwifi value="WiFi" (change)="checkValue($event, catwifi,'WiFi')">
-                  <b>WiFi</b>
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="coreNetwork" #catcore value="Core Network" (change)="checkValue($event, catcore, 'Core Network')">
-                  <b>Core Network</b>
-                </mat-checkbox>
 
-                <mat-checkbox class="example-margin" [(ngModel)]="powerRelated" #catpower value="Power Related"
-                  (change)="checkValue($event, catpower, 'Power Related')">
-                  <b>Power Related</b>
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="other" #catother value="Other" (change)="checkValue($event, catother, 'Other')">
-                  <b>Other</b>
-                </mat-checkbox>
-              </section>
+    <div class="pageborder">
+      <!-- user card -->
+      <mat-card class="user_card">
+        <mat-card-header>
+          <mat-card-title>
+            <b>Logged User : {{user}}</b>
+          </mat-card-title>
+        </mat-card-header>
 
-              <h3>Faults (Site/Cell/TRX Down)</h3>
-              <section class="example-section">
-                <mat-checkbox class="example-margin" [(ngModel)]="siteDown" #catsite value="Site Down" (change)="checkValue($event, catsite, 'Faults(Site/Cell/TRX Down)')">
-                  Site Down
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="cellDown" #catcell value="Call Down" (change)="checkValue($event, catcell, 'Faults(Site/Cell/TRX Down)')">
-                  Cell Down
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="trxDown" #cattrx value="TRX Down" (change)="checkValue($event, cattrx, 'Faults(Site/Cell/TRX Down)')">
-                  TRX Down
-                </mat-checkbox>
+        <mat-card-content>
+          <P>Today call count : {{count}}</P>
+          <p>Incoming : {{inCallCount}}</p>
+          <p>Outgoing : {{outCallCount}}</p>
+        </mat-card-content>
+      </mat-card>
 
-                <mat-checkbox class="example-margin" [(ngModel)]="sctpDown" #catsctp value="SCTP Down" (change)="checkValue($event, catsctp, 'Faults(Site/Cell/TRX Down)')">
-                  SCTP Down
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="e1down" #cate1 value="E1 Check/Down" (change)="checkValue($event, cate1, 'Faults(Site/Cell/TRX Down)')">
-                  E1 Check/Down
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="faultsVswr" #catfvswr value="VSWR" (change)="checkValue($event, catfvswr, 'Faults(Site/Cell/TRX Down)')">
-                  VSWR
-                </mat-checkbox>
-              </section>
-
-              <h3>Maintenance</h3>
-              <section class="example-section">
-                <mat-checkbox class="example-margin" [(ngModel)]="newSites" #catnewsite value="New Site" (change)="checkValue($event, catnewsite,'Maintenance')">
-                  New Sites
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="cellBlock" #catcellblock value="Call Block" (change)="checkValue($event, catcellblock, 'Maintenance')">
-                  Cell Block
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="e1Check" #cate1check value="E1 Check" (change)="checkValue($event, cate1check, 'Maintenance')">
-                  E1 Check
-                </mat-checkbox>
-
-                <mat-checkbox class="example-margin" [(ngModel)]="maintenanceVswr" #catmvswr value="VSWR" (change)="checkValue($event, catmvswr, 'Maintenance')">
-                  VSWR
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="batteryValue" #catbattery value="Battery Value"
-                  (change)="checkValue($event, catbattery, 'Maintenance')">
-                  Battery Value
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="rru" #catrru value="RRU Serial Number" (change)="checkValue($event, catrru, 'Maintenance')">
-                  RRU Serial Number
-                </mat-checkbox>
-
-                <mat-checkbox class="example-margin" [(ngModel)]="cellTraffic" #catcelltraffic value="Cell Traffic"
-                  (change)="checkValue($event, catcelltraffic, 'Maintenance')">
-                  Cell Traffic
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="acdc" #catacdc value="AC/DC" (change)="checkValue($event, catacdc, 'Maintenance')">
-                  AC/DC
-                </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="maintenanceOther" #catmother value="Other" (change)="checkValue($event, catmother, 'Maintenance')">
-                  Other
-                </mat-checkbox>
-              </section>
-
-              <h3>Other Operators</h3>
-              <mat-checkbox class="example-margin" [(ngModel)]="otherOperators" #catotheroperation value="SLT,Dialog ext"
-                (change)="checkValue($event, catotheroperation, 'Other Operators')">
-                SLT, Dialog, ext
-              </mat-checkbox>
-
-              <!-- button -->
-              <div class="button-row">
-                <button mat-raised-button (click)="refresh()">Back</button>
-                <button mat-raised-button (click)="onSubmit()" color="primary">Submit</button>
-              </div>
-            </mat-card-content>
+      <!-- table -->
+      <div style="width: 100%;">
+        <div style="float:left; width:68%">
+          <mat-card class="table_card">
+            <mat-card-header>
+              <mat-card-title>
+                <b>Incoming and Outgoing Users</b>
+              </mat-card-title>
+            </mat-card-header>
           </mat-card>
+          <div class="table-wrapper-scroll-y">
+            <table class="table table-bordered table-light table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>CallType</th>
+                  <th>Agent</th>
+                  <th>CallerID</th>
+                  <th>CallTime</th>
+                  <th>Event</th>
+                  <th>HoldTime</th>
+                  <th>QueueName</th>
+                  <th>Time</th>
+                  <th>TotalTime</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of data">
+                  <td>{{d.ID}}</td>
+                  <td>{{d.CallType}}</td>
+                  <td>{{d.Agent}}</td>
+                  <td>{{d.CallerID}}</td>
+                  <td>{{d.CallTime}}</td>
+                  <td>{{d.Event}}</td>
+                  <td>{{d.HoldTime}}</td>
+                  <td>{{d.QueueName}}</td>
+                  <td>{{d.Time}}</td>
+                  <td>{{d.TotalTime}}</td>
+                  <button type="button" (click)="onSelect(d)" class="glyphicon glyphicon-check" style="font-size: 10px;">Select</button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- checkboxes -->
+        <div style="float:right;width: 30%">
+          <div class="check_card">
+            <mat-card>
+              <mat-card-title>
+                <b>Selected ID : {{SelectedID}}</b><br> <b>Caller ID: {{CallerID}}</b>
+              </mat-card-title>
+              <mat-card-content>
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" [(ngModel)]="allAlarms" #catallAlarm value="All Alarm" main="All Alarms"
+                    (change)="checkValue($event, catallAlarm, 'All Alarms')">
+                    <b>All Alarms</b>
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="wifi" #catwifi value="WiFi" (change)="checkValue($event, catwifi,'WiFi')">
+                    <b>WiFi</b>
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="coreNetwork" #catcore value="Core Network" (change)="checkValue($event, catcore, 'Core Network')">
+                    <b>Core Network</b>
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin" [(ngModel)]="powerRelated" #catpower value="Power Related"
+                    (change)="checkValue($event, catpower, 'Power Related')">
+                    <b>Power Related</b>
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="other" #catother value="Other" (change)="checkValue($event, catother, 'Other')">
+                    <b>Other</b>
+                  </mat-checkbox>
+                </section>
+
+                <h3>Faults (Site/Cell/TRX Down)</h3>
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" [(ngModel)]="siteDown" #catsite value="Site Down" (change)="checkValue($event, catsite, 'Faults(Site/Cell/TRX Down)')">
+                    Site Down
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="cellDown" #catcell value="Call Down" (change)="checkValue($event, catcell, 'Faults(Site/Cell/TRX Down)')">
+                    Cell Down
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="trxDown" #cattrx value="TRX Down" (change)="checkValue($event, cattrx, 'Faults(Site/Cell/TRX Down)')">
+                    TRX Down
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin" [(ngModel)]="sctpDown" #catsctp value="SCTP Down" (change)="checkValue($event, catsctp, 'Faults(Site/Cell/TRX Down)')">
+                    SCTP Down
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="e1down" #cate1 value="E1 Check/Down" (change)="checkValue($event, cate1, 'Faults(Site/Cell/TRX Down)')">
+                    E1 Check/Down
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="faultsVswr" #catfvswr value="VSWR" (change)="checkValue($event, catfvswr, 'Faults(Site/Cell/TRX Down)')">
+                    VSWR
+                  </mat-checkbox>
+                </section>
+
+                <h3>Maintenance</h3>
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" [(ngModel)]="newSites" #catnewsite value="New Site" (change)="checkValue($event, catnewsite,'Maintenance')">
+                    New Sites
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="cellBlock" #catcellblock value="Call Block"
+                    (change)="checkValue($event, catcellblock, 'Maintenance')">
+                    Cell Block
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="e1Check" #cate1check value="E1 Check" (change)="checkValue($event, cate1check, 'Maintenance')">
+                    E1 Check
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin" [(ngModel)]="maintenanceVswr" #catmvswr value="VSWR" (change)="checkValue($event, catmvswr, 'Maintenance')">
+                    VSWR
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="batteryValue" #catbattery value="Battery Value"
+                    (change)="checkValue($event, catbattery, 'Maintenance')">
+                    Battery Value
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="rru" #catrru value="RRU Serial Number" (change)="checkValue($event, catrru, 'Maintenance')">
+                    RRU Serial Number
+                  </mat-checkbox>
+
+                  <mat-checkbox class="example-margin" [(ngModel)]="cellTraffic" #catcelltraffic value="Cell Traffic"
+                    (change)="checkValue($event, catcelltraffic, 'Maintenance')">
+                    Cell Traffic
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="acdc" #catacdc value="AC/DC" (change)="checkValue($event, catacdc, 'Maintenance')">
+                    AC/DC
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" [(ngModel)]="maintenanceOther" #catmother value="Other" (change)="checkValue($event, catmother, 'Maintenance')">
+                    Other
+                  </mat-checkbox>
+                </section>
+
+                <h3>Other Operators</h3>
+                <mat-checkbox class="example-margin" [(ngModel)]="otherOperators" #catotheroperation value="SLT,Dialog ext"
+                  (change)="checkValue($event, catotheroperation, 'Other Operators')">
+                  SLT, Dialog, ext
+                </mat-checkbox>
+
+                <!-- button -->
+                <div class="button-row">
+                  <button mat-raised-button (click)="refresh()">Back</button>
+                  <button mat-raised-button (click)="onSubmit()" color="primary">Submit</button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
     </div>

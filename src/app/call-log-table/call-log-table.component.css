@@ -1,47 +1,49 @@
 .page{
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
-  .table-wrapper-scroll-y {
-    display: block;
-    max-height: 400px;
-    overflow-y: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    margin-bottom: 20px;
-  }
 
-  .mat-toolbar{
-    background-color:rgb(196, 201, 248);
-    height: 45px;
-    opacity: 0.8;
-  }
-  
-  table {
-    width: 100%;
-    opacity: 0.8;
-  }
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin-bottom: 20px;
+}
 
-  th{
-    font-size: 12px;
-    -webkit-text-fill-color: black;
-    background-color: royalblue;
-    text-align: center;
-    font-weight: bold;
-  }
+.mat-toolbar{
+  background-color:rgb(196, 201, 248);
+  height: 45px;
+  opacity: 0.8;
+}
 
-  td{
-    font-size: 11px;
-    text-align: center;
-    font-weight: bold;
-  }
-  h3{
-    padding-left: 15px;
-    padding-bottom: 10px;
-  }
+table {
+  width: 100%;
+  opacity: 0.8;
+}
 
-  .example-h2 {
-    margin: 10px;
-  }
+th{
+  font-size: 12px;
+  -webkit-text-fill-color: black;
+  background-color: royalblue;
+  text-align: center;
+  font-weight: bold;
+}
+
+td{
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+}
+h3{
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+
+.example-h2 {
+  margin: 10px;
+}

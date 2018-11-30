@@ -12,6 +12,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { AuthenticationService } from 'src/service/authentication.service';
 
 
+
+
 @Component({
   selector: 'app-views',
   templateUrl: './views.component.html',
@@ -63,15 +65,13 @@ export class ViewsComponent implements OnInit {
 
   dataSource = this.getData();
 
-  constructor(public dialog: MatDialog, public callLogService: CallLogService, private router: Router,
-    private auth: AuthenticationService) { }
+  constructor(public dialog: MatDialog, public callLogService: CallLogService, private auth: AuthenticationService) { }
 
   data;
 
   getData() {
     this.callLogService.getData().subscribe(res => {
       this.data = res;
-      var sample = JSON.stringify(res);
     });
   }
 
@@ -92,10 +92,6 @@ export class ViewsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px'
-
-    });
   }
 
   selected;
@@ -136,16 +132,18 @@ export class ViewsComponent implements OnInit {
 
   checkbox;
 
-  checkValue(event: any, category, main) {
+  checkValue(event, category, main) {
     if (category.checked) {
       console.log(main);
       if (this.checkbox == undefined) {
         this.checkbox = category.value;
         this.main = main;
+        
       }
       else {
         this.checkbox = this.checkbox + ",  " + category.value;
         this.main = this.main + ", " + main;
+        console.log(this.checkbox);
       }
 
     }
@@ -154,8 +152,6 @@ export class ViewsComponent implements OnInit {
   deleteRow(id) {
     this.callLogService.deleteRow(id).subscribe(res => {
       this.data = res;
-      // console.log(this.data);
-      var sample = JSON.stringify(res);
     });
   }
 

@@ -16,7 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule
 } from '@angular/material';
-import { BsDropdownModule } from 'ngx-bootstrap'
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing';
 import { CallLogService } from '../service/call-log.service';
@@ -28,6 +29,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { LogingComponent } from './loging/loging.component';
 import { CallLogTableComponent } from './call-log-table/call-log-table.component';
 import { InfoComponent } from './info/info.component';
+import { SummaryComponent } from './summary/summary.component';
 
 
 
@@ -38,7 +40,8 @@ import { InfoComponent } from './info/info.component';
     DialogComponent,
     LogingComponent,
     CallLogTableComponent,
-    InfoComponent
+    InfoComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { InfoComponent } from './info/info.component';
     MatButtonModule,
     MatCardModule,
     BsDropdownModule.forRoot(),
+    NgbModule,
     MatTableModule,
     MatCheckboxModule,
     MatDividerModule,

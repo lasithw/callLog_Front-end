@@ -1,48 +1,50 @@
 <div class="background">
-
-  <!-- header -->
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span><img src="./assets/mobitel1.jpg"></span>
-      <span><strong>INFO</strong></span>
-      <span class="example-spacer"></span>
-      <span class="align-center"></span>
-      <button mat-raised-button routerLink="/view">Back</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
   <div class="page">
-    <!-- table -->
-    <div style="width: 100%;">
-      <mat-card class="table_card">
-        <mat-card-header>
-          <mat-card-title>
-            <b>All User Data</b>
-          </mat-card-title>
-        </mat-card-header>
-      </mat-card>
-      <div class="table-wrapper-scroll-y">
-        <table class="table table-bordered table-light table-sm">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Total Calls</th>
-              <th>Incoming</th>
-              <th>Outgoing</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let d of data">
-              <td>{{d.user}}</td>
-              <td>{{d.totalcall}}</td>
-              <td>{{d.incoming}}</td>
-              <td>{{d.outgoing}}</td>
-            </tr>
-          </tbody>
-        </table>
+
+    <!-- header -->
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span><img src="./assets/mobitel1.jpg"></span>
+        <span><strong>INFO</strong></span>
+        <span class="example-spacer"></span>
+        <span class="align-center"></span>
+        <button mat-raised-button routerLink="/view">Back</button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="pageborder">
+      <!-- table -->
+      <div style="width: 100%;">
+        <mat-card class="table_card">
+          <mat-card-header>
+            <mat-card-title>
+              <b>All User Data</b>
+            </mat-card-title>
+          </mat-card-header>
+        </mat-card>
+        <div class="table-wrapper-scroll-y">
+          <table class="table table-bordered table-light table-sm">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Total Calls</th>
+                <th>Incoming</th>
+                <th>Outgoing</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of data">
+                <td>{{d.user}}</td>
+                <td>{{d.totalcall}}</td>
+                <td>{{d.incoming}}</td>
+                <td>{{d.outgoing}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="footer">
-      <p>Info</p>
+      <div class="footer">
+        <p>Info</p>
+      </div>
     </div>
   </div>
 </div>

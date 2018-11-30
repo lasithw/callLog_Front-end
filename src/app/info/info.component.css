@@ -1,94 +1,98 @@
 .background{
-  background-image: url("src/assets/background.jpg");
-  background-size:cover;
-  background-repeat: no-repeat;
+background-image: url("src/assets/background.jpg");
+background-size:cover;
+background-repeat: no-repeat;
 }
-  
-  .page{
-    padding-left: 10%;
-    padding-right: 10%;
-    margin-bottom: 10px;
-  }
 
-  .mat-toolbar{
-    margin-top: 30px;
-    margin-bottom: 60px;
-  }
-
-  span{
-    font-size: 30px;
-    padding-left:20px;
-  }
-  
-  .example-spacer {
-    flex: 1 1 auto;
-  }
-  
-  .mat-card-title{
-    font-size: 20px;
-  }
-
-  .mat-card-content{
-    font-size: 15px;
-    padding: 1px;
-  }
-
-  .mat-card{
-    background-color:rgb(196, 201, 248);
-    padding: 5px;
-    opacity: 0.9;
-  }
-
-  .check_card{
-    margin-bottom: 30px;
-  }
-
-  .table_card{
-    max-width: 100%;
-    max-height: 40px;
-    opacity: 0.9;
-  }
-
-
-  table {
-    width: 100%;
-    opacity: 0.9;
-  }
-
-  .table-wrapper-scroll-y {
-    display: block;
-    max-height: 440px;
-    overflow-y: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    margin-bottom: 20px;
-  }
-
-  th{
-    font-size: 15px;
-    -webkit-text-fill-color: black;
-    background-color:  royalblue;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  td{
-    font-size: 13px;
-    text-align: center;
-    font-weight: bold;
-  }
-  h3{
-    padding-left: 15px;
-    padding-bottom: 10px;
-    font-size: 15px;
-    font-weight: bold;  
-  }
-
-  .example-h2 {
-    margin: 10px;
-  }
-
-  .footer{
-    margin-top: 38%;
+.page{
+padding-top: 30px;
+margin-bottom: 10px;
 }
-  
+
+.pageborder{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.mat-toolbar{
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+
+span{
+  font-size: 30px;
+  padding-left:20px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card-title{
+  font-size: 20px;
+}
+
+.mat-card-content{
+  font-size: 15px;
+  padding: 1px;
+}
+
+.mat-card{
+  background-color:rgb(196, 201, 248);
+  padding: 5px;
+  opacity: 0.9;
+}
+
+.check_card{
+  margin-bottom: 30px;
+}
+
+.table_card{
+  max-width: 100%;
+  max-height: 40px;
+  opacity: 0.9;
+}
+
+
+table {
+  width: 100%;
+  opacity: 0.9;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 540px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin-bottom: 20px;
+}
+
+th{
+  font-size: 15px;
+  -webkit-text-fill-color: black;
+  background-color:  royalblue;
+  text-align: center;
+  font-weight: bold;
+}
+
+td{
+  font-size: 13px;
+  text-align: center;
+  font-weight: bold;
+}
+h3{
+  padding-left: 15px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;  
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.footer{
+  margin-top: 38%;
+}
+
 
