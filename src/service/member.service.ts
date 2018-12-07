@@ -23,11 +23,15 @@ export class MemberService {
     return this.http.get(this.uri + '/member/getMemberData', httpOptions);
   }
 
-  incoming() {
-    return this.http.get(this.uri + '/member/getMemberCount/?i=incoming', httpOptions);
+  memberCount() {
+    return this.http.get(this.uri + '/member/getMemberCount', httpOptions);
   }
 
-  outgoing() {
-    return this.http.get(this.uri + '/member/getMemberCount', httpOptions);
+  chartData() {
+    return this.http.get(this.uri + '/member/getChartData/?name=Nadi Tharanga', httpOptions);
+  }
+
+  addData(memberData){
+    return this.http.post(this.uri + '/member/add' , memberData);
   }
 }

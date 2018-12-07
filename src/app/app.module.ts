@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { GrdFilterPipe } from './summary/grd-filter.pipe';
+import { ChartsModule } from 'ng2-charts';
 import {
   MatButtonModule,
   MatToolbarModule,
@@ -41,7 +43,8 @@ import { SummaryComponent } from './summary/summary.component';
     LogingComponent,
     CallLogTableComponent,
     InfoComponent,
-    SummaryComponent
+    SummaryComponent,
+    GrdFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { SummaryComponent } from './summary/summary.component';
     MatIconModule,
     MatProgressSpinnerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   exports: [
     CommonModule,

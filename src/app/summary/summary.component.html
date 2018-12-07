@@ -20,6 +20,9 @@
             <mat-card-title>
               <b>User Details</b>
             </mat-card-title>
+            <span class="example-spacer"></span>
+            <span class="align-center"></span>
+            <button type="button" class="btn btn-primary btn-sm" (click)="open(content)">Add</button>
           </mat-card-header>
         </mat-card>
         <div class="table-wrapper-scroll-y">
@@ -48,39 +51,115 @@
     </div>
 
     <div class="pageborder1">
-      <div style="width: 40%">
-        <mat-card class="table_card">
-          <mat-card-header>
-            <mat-card-title>
-              <b>User Details</b>
-            </mat-card-title>
-          </mat-card-header>
-        </mat-card>
-        <div class="table-wrapper-scroll-y">
-          <table class="table table-bordered table-light table-sm">
-            <thead>
-              <tr>
-                <th>Number</th>
-                <th>Name</th>
-                <th>Incoming</th>
-                <th>Outgoing</th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let i of call">
-                <td>{{i.number}}</td>
-                <td>{{i.name}}</td>
-                <td>{{i.incoming}}</td>
-                <td>{{i.outgoing}}</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="row">
+        <div style="width: 41%">
+          <mat-card class="table_card">
+            <mat-card-header>
+              <mat-card-title>
+                <b>Agent Call Log</b>
+                <input [(ngModel)]="searchText" placeholder="Search..." class="advancedSearchTextbox">
+              </mat-card-title>
+            </mat-card-header>
+          </mat-card>
+          <div class="table-wrapper-scroll-y">
+            <table class="table table-bordered table-light table-sm">
+              <thead>
+                <tr>
+                  <th>Number</th>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Incoming</th>
+                  <th>Outgoing</th>
+
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of call | grdFilter: {name: searchText, number: searchText, date:searchText}">
+                  <td>{{i.number}}</td>
+                  <td>{{i.name}}</td>
+                  <td>{{i.date}}</td>
+                  <td>{{i.incoming}}</td>
+                  <td>{{i.outgoing}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- chart -->
+        <div class="col-md-7">
+          <mat-card class="table_card">
+            <mat-card-header>
+              <mat-card-title>
+                <b>Agent Summary</b>
+              </mat-card-title>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Right-aligned menu
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <button class="dropdown-item" type="button">Action</button>
+                  <button class="dropdown-item" type="button">Another action</button>
+                  <button class="dropdown-item" type="button">Something else here</button>
+                </div>
+              </div>
+
+            </mat-card-header>
+          </mat-card>
+
+          <mat-card class="chart_card">
+            <div style="display: block;">
+              <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </mat-card>
+
         </div>
       </div>
-    </div>
 
-    <div class="footer">
-      <p>Summary</p>
-    </div>
+      <div class="footer">
+        <p>Summary</p>
+      </div>
 
+    </div>
   </div>
 </div>
+
+<!-- modal -->
+<ng-template #content let-modal class="modal">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" name="number" [(ngModel)]=number placeholder="Number">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" name="name" [(ngModel)]=name placeholder="Name">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" name="member" [(ngModel)]=member placeholder="Member">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" name="main_region" [(ngModel)]=main_region placeholder="Main Region">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" name="sub_region" [(ngModel)]=sub_region placeholder="Sub Region">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="add(); modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<pre>{{closeResult}}</pre>
