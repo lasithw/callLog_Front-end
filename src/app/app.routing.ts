@@ -43,11 +43,6 @@ export const routes: Routes = [
         component: SummaryComponent
     },
 
-    {
-        path: '',
-        component: LogingComponent
-    },
-
 ];
 
 @NgModule({

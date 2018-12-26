@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialog, MatDialogConfig, MatSnackBarModule } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { error } from 'util';
 
-import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { CallLogService } from '../../service/call-log.service';
-import { InfoComponent } from '../info/info.component';
-import { LogingComponent } from '../loging/loging.component';
-import { NgModel } from '@angular/forms';
-import { SelectionModel } from '@angular/cdk/collections';
 import { AuthenticationService } from 'src/service/authentication.service';
 
 
@@ -95,14 +89,16 @@ export class ViewsComponent implements OnInit {
   }
 
   selected;
-  CallerID: string;
+  // CallerID: string;
   SelectedID;
+  Agent: string;
 
   onSelect(selectedItem: any) {
     console.log("Selected item Id: ", selectedItem.ID);
     this.selected = selectedItem;
     this.SelectedID = selectedItem.ID;
-    this.CallerID = selectedItem.CallerID;
+    // this.CallerID = selectedItem.CallerID;
+    this.Agent = selectedItem.Agent;
   }
 
   addCallLogData() {
@@ -132,7 +128,7 @@ export class ViewsComponent implements OnInit {
 
   checkbox;
 
-  checkValue(event, category, main) {
+  checkValue(category, main) {
     if (category.checked) {
       console.log(main);
       if (this.checkbox == undefined) {

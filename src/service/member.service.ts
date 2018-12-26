@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SummaryComponent } from'../app/summary/summary.component';
+import { environment } from '../environments/environment'
 
 var httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +16,7 @@ export class MemberService {
 
   public data: any;
 
-  uri = 'http://localhost:3002';
+  uri = environment.apiBase;
 
   constructor(private http: HttpClient) {
   }
@@ -28,10 +30,18 @@ export class MemberService {
   }
 
   chartData() {
-    return this.http.get(this.uri + '/member/getChartData/?name=Nadi Tharanga', httpOptions);
+    return this.http.get(this.uri + '/member/getChartData/?name='+localStorage.getItem('cName'), httpOptions);
   }
 
   addData(memberData){
     return this.http.post(this.uri + '/member/add' , memberData);
+  }
+
+  getName(){
+    return this.http.get(this.uri + '/member/getName');
+  }
+
+  getAnnualData(data){
+    return this.http.get(this.uri + '/member/getAnnualData/?data='+data);
   }
 }

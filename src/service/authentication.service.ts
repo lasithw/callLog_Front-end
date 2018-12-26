@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment'
 
 export interface UserDetails {
 
@@ -12,7 +13,7 @@ export interface UserDetails {
   iat: number
 }
 
-interface TokenResponse {
+export interface TokenResponse {
   token: string
 }
 
@@ -25,7 +26,7 @@ export interface TokenPayload {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  uri = 'http://localhost:3002';
+  uri = environment.apiBase;
 
   private token: string;
   private username: string;

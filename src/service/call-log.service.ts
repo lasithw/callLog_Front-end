@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from 'src/service/authentication.service';
+import { environment } from '../environments/environment'
 
 let httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,7 @@ export class CallLogService {
   username: string;
   user = this.name();
 
-  uri = 'http://localhost:3002';
+  uri = environment.apiBase;
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {
   }
@@ -34,28 +35,28 @@ export class CallLogService {
 
 
   incoming() {
-    return this.http.get(this.uri + '/data/callType/?i=incoming&user='+this.name(), httpOptions);
+    return this.http.get(this.uri + '/data/callType/?i=incoming&user=' + this.name(), httpOptions);
   }
 
 
   outgoing() {
-    return this.http.get(this.uri + '/data/callType/?i=outgoing&user='+this.name(), httpOptions);
+    return this.http.get(this.uri + '/data/callType/?i=outgoing&user=' + this.name(), httpOptions);
   }
 
   todayCallCount() {
-    return this.http.get(this.uri + '/data/todayCall/?user='+this.name(), httpOptions);
+    return this.http.get(this.uri + '/data/todayCall/?user=' + this.name(), httpOptions);
   }
 
   getCallLogData() {
-    return this.http.get(this.uri + '/data/getCallLogData/?user='+this.user, httpOptions);
+    return this.http.get(this.uri + '/data/getCallLogData/?user=' + this.user, httpOptions);
   }
 
   addCallLog(callLogData) {
-    return this.http.post(this.uri + '/data/addCallLog' , callLogData);
+    return this.http.post(this.uri + '/data/addCallLog', callLogData);
   }
 
-  deleteRow(id){
-    return this.http.get(this.uri + '/data/delete/?i='+id, httpOptions);
+  deleteRow(id) {
+    return this.http.get(this.uri + '/data/delete/?i=' + id, httpOptions);
   }
 
 }

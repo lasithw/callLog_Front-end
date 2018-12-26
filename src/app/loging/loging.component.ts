@@ -32,7 +32,7 @@ export class LogingComponent implements OnInit {
       } ,
       err => {
         // if(err)
-        // alert("Inavalid Input");
+        alert("Inavalid Input");
         console.error(err)
       }
     )

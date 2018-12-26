@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment'
 
 var httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,7 @@ export class InfoService {
 
   public data: any;
 
-  uri = 'http://localhost:3002';
+  uri = environment.apiBase;
 
   constructor(private http: HttpClient) {
   }

@@ -26,7 +26,7 @@
 }
 
 .btn{
-  max-height: 30px;
+  max-height: 35px;
 }
 
 span{
@@ -39,82 +39,117 @@ span{
 }
 
 .table_card{
-    max-width: 100%;
-    max-height: 40px;
-    opacity: 0.8;
-  }
+  max-width: 100%;
+  max-height: 40px;
+  opacity: 0.8;
+}
 
-  .mat-card-title{
-    font-size: 20px;
-  }
+.table_card1{
+  max-width: 100%;
+  max-height: 40px;
+  opacity: 0.8;
+  margin-left: 15%;
+}
 
-  .advancedSearchTextbox{
-    font-size: 15px;
-    align-content: center;
-    margin-left: 140px;
-  }
+.table_card2{
+  max-width: 100%;
+  max-height: 200px;
+  opacity: 0.8;
+}
 
-  table {
-    width: 100%;
-    opacity: 0.8;
-  }
+.download{
+  margin-left: 47%;
+}
 
-  .table-wrapper-scroll-y {
-    display: block;
-    max-height: 400px;
-    overflow-y: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    margin-bottom: 20px;
-  }
-  th{
-    font-size: 15px;
-    -webkit-text-fill-color: black;
-    background-color:  royalblue;
-    text-align: center;
-    font-weight: bold;
-  }
+.mat-card-title{
+  font-size: 20px;
+}
 
-  td{
-    font-size: 13px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  h3{
-    padding-left: 15px;
-    padding-bottom: 10px;
-    font-size: 15px;
-    font-weight: bold;  
-  }
+.advancedSearchTextbox{
+  font-size: 15px;
+  align-content: center;
+  max-height: 35px;
+  margin-left: 38%;
+}
 
-  .example-h2 {
-    margin: 10px;
-  }
+.data{
+  /* max-height: 40px; */
+  margin-left: 5%;
+}
 
-  .mat-card{
-    background-color:rgb(196, 201, 248);
-    padding: 5px;
-    opacity: 0.9;
-  }
+table {
+  width: 100%;
+  opacity: 0.8;
+}
 
-  .chart_card{
-    opacity: 0.9;
-  }
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin-bottom: 20px;
+}
+th{
+  font-size: 15px;
+  -webkit-text-fill-color: black;
+  background-color:  royalblue;
+  text-align: center;
+  font-weight: bold;
+}
 
-  .footer{
-    margin-top: 10%;
-  }
+td{
+  font-size: 13px;
+  text-align: center;
+  font-weight: bold;
+}
 
-  /* modal */
+h3{
+  padding-left: 15px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;  
+}
 
-  .input-group{
-    padding: 5px;
-  }
+.example-h2 {
+  margin: 10px;
+}
 
-  .modal{
-    opacity: 0.7;
-    background-color:rgb(196, 201, 248);
-  }
+.mat-card{
+  background-color:rgb(196, 201, 248);
+  padding: 5px;
+  opacity: 0.9;
+}
+
+
+.chart_card{
+  margin-left: 15%;
+  opacity: 0.9;
+}
+
+.chart_card1{
+  opacity: 0.9;
+  margin-left: 20px
+}
+
+.footer{
+  margin-top: 10%;
+}
+
+/* modal */
+
+.input-group{
+  padding: 5px;
+}
+
+.modal{
+  opacity: 0.7;
+  background-color:rgb(196, 201, 248);
+}
+
+.name{
+  margin-left: 60%;
+  max-height: 50px;
+}
 
 
 

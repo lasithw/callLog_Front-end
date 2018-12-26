@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../../service/member.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ExcelService } from '../../service/excel.service';
+import { switchMap } from 'rxjs/operators';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-summary',
@@ -11,10 +14,18 @@ export class SummaryComponent implements OnInit {
 
   data;
   call;
+  agentName;
+  chartName;
   closeResult: string;
   public date: Array<any> = [];
   public incoming: Array<any> = [];
   public outgoing: Array<any> = [];
+  public agent: Array<any> = [];
+  public chartType: string = 'bar';
+  public barchartDate: Array<any> = [];
+  public barchartIncoming: Array<any> = [];
+  public barchartOutgoing: Array<any> = [];
+
 
   number = '';
   name: string = "";
@@ -22,14 +33,19 @@ export class SummaryComponent implements OnInit {
   main_region: string = "";
   sub_region: string = "";
 
-  constructor(public memberService: MemberService, private modalService: NgbModal) { }
+  constructor(
+    public memberService: MemberService,
+    private modalService: NgbModal,
+    private excelService: ExcelService
+  ) { }
 
   // dataSource = this.getData();
 
   ngOnInit() {
     this.getData();
     this.getCallData();
-    this.getChartData();
+    this.getName();
+    this.barchart();
   }
 
   getData() {
@@ -47,15 +63,94 @@ export class SummaryComponent implements OnInit {
     });
   }
 
-  getChartData() {
-    this.memberService.chartData().subscribe(res => {
+  // Agent Call Log filter
+  annualData(value: any) {
+    this.memberService.getAnnualData(value).subscribe(res => {
+      this.call = res;
+      console.log(res);
+
+      this.barchartIncoming=[];
+      this.barchartOutgoing=[];
+
+      for (let i in res) {
+        this.barchartDate[i]=res[i].date
+        this.barchartIncoming[i]=res[i].incoming
+        this.barchartOutgoing[i]=res[i].outgoing
+      }
+      this.barchart();
+    });
+    console.log(this.barchartIncoming);
+  }
+
+  // bar chart
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public barChartLabels: string[]
+  public barChartType: string
+  public barChartLegend: boolean
+  public barChartData: any[]
+
+  barchart() {
+    this.barChartType = 'bar';
+    this.barChartLegend = true;
+
+    this.barChartLabels = this.barchartDate;
+
+    this.barChartData = [
+      { data: this.barchartIncoming, label: 'Incoming' },
+      { data: this.barchartOutgoing, label: 'Outgoing' }
+    ];
+  }
+
+  public randomize(): void {
+    this.barchart()
+  }
+
+
+  getName() {
+    this.memberService.getName().subscribe(res => {
+      this.agentName = res;
       var sample = JSON.stringify(res);
       for (let i in res) {
-        this.date[i] = this.call[i].date;
-        this.incoming[i] = this.call[i].incoming;
-        this.outgoing[i] = this.call[i].outgoing;
+        this.agent[i] = this.agentName[i].name;
       }
-      console.log(this.date);
+      // console.log(this.agent)
+    });
+  }
+
+  filterForeCasts(filterVal: any) {
+    this.chartName = filterVal
+    // console.log(this.chartName);
+    window.localStorage.removeItem('cName');
+    localStorage.setItem('cName', this.chartName);
+
+    this.getChartData();
+  }
+
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.call, 'agent_call_log');
+  }
+
+  getChartData() {
+    this.memberService.chartData().subscribe(res => {
+
+      this.outgoing = [];
+      this.incoming = [];
+      var sample = JSON.stringify(res);
+      // console.log(res);
+
+      for (let i in res) {
+        this.date[i] = res[i].date;
+        this.incoming[i] = res[i].incoming;
+        this.outgoing[i] = res[i].outgoing;
+      }
+      this.lineChartData = [
+        { data: this.incoming, label: 'Incoming' },
+        { data: this.outgoing, label: 'Outgoing' }];
+      // console.log(this.outgoing, this.incoming);
     });
   }
 
@@ -80,7 +175,7 @@ export class SummaryComponent implements OnInit {
     this.memberService.addData(memberData).subscribe((response) => {
       console.log(response);
     });
-    // this.refresh();
+    this.refresh();
   }
 
   private getDismissReason(reason: any): string {
@@ -95,32 +190,32 @@ export class SummaryComponent implements OnInit {
 
   // lineChart
   public lineChartData: Array<any> = [
-    { data: this.incoming, label: 'Incoming' },
-    { data: this.outgoing, label: 'Outgoing' }
-  ];
+    { data: this.incoming.length > 0 ? this.incoming : [], label: 'Incoming' },
+    { data: this.outgoing.length > 0 ? this.outgoing : [], label: 'Outgoing' }];
   public lineChartLabels: Array<any> = this.date;
   public lineChartOptions: any = {
     responsive: true
   };
   public lineChartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(0,51,255,0.5)',
+    { 
+      backgroundColor: 'rgba(255,204,0,0.6)',
       borderColor: 'rgba(153,153,153,0.5)',
-      pointBackgroundColor: 'rgba(255,255,255,0.7)',
+      pointBackgroundColor: 'rgba(255,255,255,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
 
-    { // grey
-      backgroundColor: 'rgba(0,153,255,0.5)',
+    { 
+      backgroundColor: 'rgba(0,0,153,0.6)',
       borderColor: 'rgba(153,153,153,0.5)',
-      pointBackgroundColor: 'rgba(255,255,255,0.7)',
+      pointBackgroundColor: 'rgba(255,255,255,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
+
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
 

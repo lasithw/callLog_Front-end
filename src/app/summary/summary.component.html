@@ -22,7 +22,7 @@
             </mat-card-title>
             <span class="example-spacer"></span>
             <span class="align-center"></span>
-            <button type="button" class="btn btn-primary btn-sm" (click)="open(content)">Add</button>
+            <button type="button" class="btn btn-success btn-sm" (click)="open(content)">Add</button>
           </mat-card-header>
         </mat-card>
         <div class="table-wrapper-scroll-y">
@@ -50,16 +50,32 @@
 
     </div>
 
+    <!-- agent call log table -->
     <div class="pageborder1">
       <div class="row">
         <div style="width: 41%">
-          <mat-card class="table_card">
+          <mat-card class="table_card2">
             <mat-card-header>
               <mat-card-title>
                 <b>Agent Call Log</b>
-                <input [(ngModel)]="searchText" placeholder="Search..." class="advancedSearchTextbox">
               </mat-card-title>
+              <div class="download">
+                <button type="button" class="btn btn-success" (click)="exportAsXLSX()">Download</button>
+              </div>
             </mat-card-header>
+            <div class="row">
+              <div class="data">
+                <!-- <label>Name: </label> -->
+                <select (change)="annualData($event.target.value)" class="btn btn-light dropdown-toggle" type="button"
+                  data-toggle="dropdown">
+                  <option value="0">Filter</option>
+                  <option value="1">Annual</option>
+                  <option value="2">Monthly</option>
+                  <option value="3">Daily</option>
+                </select>
+              </div>
+              <input [(ngModel)]="searchText" placeholder="Search..." class="advancedSearchTextbox">
+            </div>
           </mat-card>
           <div class="table-wrapper-scroll-y">
             <table class="table table-bordered table-light table-sm">
@@ -85,39 +101,52 @@
           </div>
         </div>
 
-        <!-- chart -->
-        <div class="col-md-7">
-          <mat-card class="table_card">
-            <mat-card-header>
-              <mat-card-title>
-                <b>Agent Summary</b>
-              </mat-card-title>
-
-              <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  Right-aligned menu
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button">Action</button>
-                  <button class="dropdown-item" type="button">Another action</button>
-                  <button class="dropdown-item" type="button">Something else here</button>
-                </div>
+        <!-- bar chart -->
+        <div class="barChart">
+          <mat-card class="chart_card1">
+            <div>
+              <div style="display: block">
+                <canvas baseChart  width="700" height="480" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                  [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
               </div>
-
-            </mat-card-header>
-          </mat-card>
-
-          <mat-card class="chart_card">
-            <div style="display: block;">
-              <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
-                [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-              </canvas>
+              <!-- <button (click)="randomize()">Update</button> -->
             </div>
           </mat-card>
-
         </div>
+
+      </div>
+
+      <!--line chart -->
+      <div class="col-md-10">
+        <mat-card class="table_card1">
+          <mat-card-header>
+            <mat-card-title>
+              <b>Agent Summary</b>
+            </mat-card-title>
+
+            <div class="name">
+              <!-- <label>Name: </label> -->
+              <select (change)="filterForeCasts($event.target.value)" class="btn btn-light dropdown-toggle" type="button"
+                data-toggle="dropdown">
+                <option value="0">--Select Name--</option>
+                <option *ngFor="let a of agentName" value={{a.name}}>
+                  {{a.name}}
+                </option>
+              </select>
+            </div>
+
+          </mat-card-header>
+        </mat-card>
+
+        <mat-card class="chart_card">
+          <div style="display: block;">
+            <canvas baseChart width="600" height="230" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+              [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mat-card>
+
       </div>
 
       <div class="footer">
@@ -131,8 +160,8 @@
 <!-- modal -->
 <ng-template #content let-modal class="modal">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <h4 class="modal-title" id="modal-basic-title">Add Details</h4>
+    <button type="button" class="close btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -158,7 +187,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="add(); modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-primary" (click)="add(); modal.close('Save click')">Save</button>
   </div>
 </ng-template>
 

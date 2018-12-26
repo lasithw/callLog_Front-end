@@ -6,13 +6,13 @@
 }
 
 .page{
-  padding-top: 30px;
+  padding-top: 25px;
   margin-bottom: 10px;
 }
 
 .pageborder{
     padding-left: 1%;
-    padding-right: 1%;
+    padding-right: 1%;  
 }
 
 .mat-toolbar{
@@ -48,7 +48,7 @@ span{
   background-color: rgb(211, 208, 208);
   display: block;
   margin: auto;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   opacity: 0.8;
 }
 
@@ -85,7 +85,7 @@ table {
 
 .table-wrapper-scroll-y {
   display: block;
-  max-height: 520px;
+  max-height: 500px;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   margin-bottom: 20px;
@@ -120,8 +120,8 @@ h3{
   align-content: center;
   align-items: center;
   display: block;
-  margin-bottom: 15px; 
-  margin-top: 15px;
+  margin-bottom: 10px; 
+  margin-top: 10px;
 
 }
 
