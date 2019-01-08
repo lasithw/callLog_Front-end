@@ -12,8 +12,11 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class SummaryComponent implements OnInit {
 
+  model;
   data;
   call;
+  date1;
+  date2;
   agentName;
   chartName;
   closeResult: string;
@@ -46,6 +49,7 @@ export class SummaryComponent implements OnInit {
     this.getCallData();
     this.getName();
     this.barchart();
+    // this.datePicker(this.date1,this.date2);
   }
 
   getData() {
@@ -67,19 +71,41 @@ export class SummaryComponent implements OnInit {
   annualData(value: any) {
     this.memberService.getAnnualData(value).subscribe(res => {
       this.call = res;
-      console.log(res);
-
-      this.barchartIncoming=[];
-      this.barchartOutgoing=[];
+      // console.log(res);
+      
+      this.barchartIncoming = [];
+      this.barchartOutgoing = [];
 
       for (let i in res) {
-        this.barchartDate[i]=res[i].date
-        this.barchartIncoming[i]=res[i].incoming
-        this.barchartOutgoing[i]=res[i].outgoing
+        this.barchartDate[i] = res[i].date
+        this.barchartIncoming[i] = res[i].incoming
+        this.barchartOutgoing[i] = res[i].outgoing
       }
       this.barchart();
     });
-    console.log(this.barchartIncoming);
+    // console.log(this.barchartIncoming);
+  }
+
+  datePicker(dateStart, dateEnd) {
+    this.date1 = dateStart.toISOString().split('T')[0];
+    this.date2 = dateEnd.toISOString().split('T')[0];
+    console.log(this.date1, this.date2);
+
+    this.memberService.getDatePickerData(this.date1,this.date2).subscribe(res => {
+      this.call = res;
+      
+      this.barchartIncoming = [];
+      this.barchartOutgoing = [];
+
+      for (let i in res) {
+        this.barchartDate[i] = res[i].date
+        this.barchartIncoming[i] = res[i].incoming
+        this.barchartOutgoing[i] = res[i].outgoing
+      }
+      this.barchart();
+    })
+
+    this.barchart();
   }
 
   // bar chart
@@ -197,7 +223,7 @@ export class SummaryComponent implements OnInit {
     responsive: true
   };
   public lineChartColors: Array<any> = [
-    { 
+    {
       backgroundColor: 'rgba(255,204,0,0.6)',
       borderColor: 'rgba(153,153,153,0.5)',
       pointBackgroundColor: 'rgba(255,255,255,1)',
@@ -206,7 +232,7 @@ export class SummaryComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
 
-    { 
+    {
       backgroundColor: 'rgba(0,0,153,0.6)',
       borderColor: 'rgba(153,153,153,0.5)',
       pointBackgroundColor: 'rgba(255,255,255,1)',

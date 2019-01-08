@@ -76,6 +76,23 @@
               </div>
               <input [(ngModel)]="searchText" placeholder="Search..." class="advancedSearchTextbox">
             </div>
+
+            <div class="row">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="From" [(ngModel)]="start">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="To" [(ngModel)]="end">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+
+              <button type="button" class="btnDate btn-success btn-sm" (click)="datePicker(start,end)">Get</button>
+            </div>
+
           </mat-card>
           <div class="table-wrapper-scroll-y">
             <table class="table table-bordered table-light table-sm">
@@ -106,8 +123,9 @@
           <mat-card class="chart_card1">
             <div>
               <div style="display: block">
-                <canvas baseChart  width="700" height="480" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                  [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                <canvas baseChart width="700" height="555" [datasets]="barChartData" [labels]="barChartLabels"
+                  [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
               </div>
               <!-- <button (click)="randomize()">Update</button> -->
             </div>

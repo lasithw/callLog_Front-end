@@ -16,7 +16,9 @@ import {
   MatMenuModule,
   MatIconModule,
   MatProgressSpinnerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -66,6 +68,8 @@ import { SummaryComponent } from './summary/summary.component';
     MatSnackBarModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     HttpClientModule,
     ChartsModule

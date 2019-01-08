@@ -44,4 +44,8 @@ export class MemberService {
   getAnnualData(data){
     return this.http.get(this.uri + '/member/getAnnualData/?data='+data);
   }
+
+  getDatePickerData(start,end){
+    return this.http.get(this.uri + '/member/getDatePickerData/?start='+start+'&end'+end);
+  }
 }

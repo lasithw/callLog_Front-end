@@ -121,25 +121,28 @@ export class ViewsComponent implements OnInit {
       mainCategory: this.main
 
     }
+    console.log(this.checkbox, this.main);
     this.callLogService.addCallLog(callLogData).subscribe((response) => {
-      console.log(response);
+      // console.log(response);
     });
   };
 
   checkbox;
 
-  checkValue(category, main) {
-    if (category.checked) {
-      console.log(main);
+  checkValue(event, category, main) {
+    if (event.checked) {
+      // console.log(main);
       if (this.checkbox == undefined) {
         this.checkbox = category.value;
         this.main = main;
-        
+        console.log('main ' + this.main);
+
       }
       else {
         this.checkbox = this.checkbox + ",  " + category.value;
         this.main = this.main + ", " + main;
-        console.log(this.checkbox);
+        console.log('checkbox ' + this.checkbox);
+
       }
 
     }
