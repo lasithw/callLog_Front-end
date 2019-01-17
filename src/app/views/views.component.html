@@ -10,6 +10,7 @@
         <span class="align-center"></span>
 
         <div class="col text-right">
+            <label class="loggedUser">Hi! {{user}}</label> 
           <div ngbDropdown placement="bottom-right" class="d-inline-block">
             <button class="btn" id="dropdown" ngbDropdownToggle>More</button>
             <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdown">
@@ -26,12 +27,6 @@
     <div class="pageborder">
       <!-- user card -->
       <mat-card class="user_card">
-        <mat-card-header>
-          <mat-card-title>
-            <b>Logged User : {{user}}</b>
-          </mat-card-title>
-        </mat-card-header>
-
         <mat-card-content>
           <P>Today call count : {{count}}</P>
           <p>Incoming : {{inCallCount}}</p>

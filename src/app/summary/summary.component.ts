@@ -15,6 +15,7 @@ export class SummaryComponent implements OnInit {
   model;
   data;
   call;
+  chartCall;
   date1;
   date2;
   agentName;
@@ -71,6 +72,10 @@ export class SummaryComponent implements OnInit {
   annualData(value: any) {
     this.memberService.getAnnualData(value).subscribe(res => {
       this.call = res;
+    });
+
+    this.memberService.getAnnualChart(value).subscribe(res => {
+      // this.call = res;
       // console.log(res);
       
       this.barchartIncoming = [];
@@ -87,12 +92,18 @@ export class SummaryComponent implements OnInit {
   }
 
   datePicker(dateStart, dateEnd) {
+
     this.date1 = dateStart.toISOString().split('T')[0];
     this.date2 = dateEnd.toISOString().split('T')[0];
     console.log(this.date1, this.date2);
 
     this.memberService.getDatePickerData(this.date1,this.date2).subscribe(res => {
       this.call = res;
+      
+    })
+
+    this.memberService.getDatePickerChart(this.date1,this.date2).subscribe(res => {
+      this.chartCall = res;
       
       this.barchartIncoming = [];
       this.barchartOutgoing = [];
@@ -105,7 +116,6 @@ export class SummaryComponent implements OnInit {
       this.barchart();
     })
 
-    this.barchart();
   }
 
   // bar chart

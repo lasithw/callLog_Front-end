@@ -45,7 +45,15 @@ export class MemberService {
     return this.http.get(this.uri + '/member/getAnnualData/?data='+data);
   }
 
+  getAnnualChart(data){
+    return this.http.get(this.uri + '/member/getAnnualChart/?data='+data);
+  }
+
   getDatePickerData(start,end){
     return this.http.get(this.uri + '/member/getDatePickerData/?start='+start+'&end'+end);
+  }
+
+  getDatePickerChart(start,end){
+    return this.http.get(this.uri + '/member/getDatePickerChart/?start='+start+'&end'+end);
   }
 }
