@@ -26,13 +26,29 @@
 
     <div class="pageborder">
       <!-- user card -->
-      <mat-card class="user_card">
+      <mat-card class="details">
+      <div class="row">
+        <mat-card class="user_card">
+            <p>Today Call Count</p>
+            <h2>{{count}}</h2>
+        </mat-card>
+        <mat-card class="user_card">
+            <p>Incoming</p> 
+            <h2>{{inCallCount}}</h2> 
+        </mat-card>
+        <mat-card class="user_card">
+            <p>Outgoing</p>
+            <h2>{{outCallCount}}</h2>
+        </mat-card>
+      </div>
+    </mat-card>
+      <!-- <mat-card class="user_card">
         <mat-card-content>
           <P>Today call count : {{count}}</P>
           <p>Incoming : {{inCallCount}}</p>
           <p>Outgoing : {{outCallCount}}</p>
         </mat-card-content>
-      </mat-card>
+      </mat-card> -->
 
       <!-- table -->
       <div style="width: 100%;">

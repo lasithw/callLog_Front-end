@@ -77,7 +77,7 @@ export class SummaryComponent implements OnInit {
     this.memberService.getAnnualChart(value).subscribe(res => {
       // this.call = res;
       // console.log(res);
-      
+      this.barchartDate.length = 0;
       this.barchartIncoming = [];
       this.barchartOutgoing = [];
 
@@ -173,6 +173,7 @@ export class SummaryComponent implements OnInit {
   getChartData() {
     this.memberService.chartData().subscribe(res => {
 
+      this.date.length = 0;
       this.outgoing = [];
       this.incoming = [];
       var sample = JSON.stringify(res);
