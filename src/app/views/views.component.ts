@@ -16,6 +16,28 @@ import { AuthenticationService } from 'src/service/authentication.service';
 
 export class ViewsComponent implements OnInit {
 
+  allAlarms;
+  wifi;
+  coreNetwork;
+  powerRelated;
+  other;
+  siteDown;
+  cellDown;
+  trxDown;
+  sctpDown;
+  e1down;
+  faultsVswr;
+  newSites;
+  cellBlock;
+  e1Check;
+  maintenanceVswr;
+  batteryValue;
+  rru;
+  cellTraffic;
+  acdc;
+  maintenanceOther;
+  otherOperators;
+
   user = this.name();
   incoming = this.incomingCall();
   outgoing = this.outgoingCall();
@@ -75,7 +97,7 @@ export class ViewsComponent implements OnInit {
 
   onSubmit() {
     this.addCallLogData();
-    this.refresh();
+    // this.refresh();
     if (!error) {
       this.openDialog();
     }
@@ -141,7 +163,6 @@ export class ViewsComponent implements OnInit {
       else {
         this.checkbox = this.checkbox + ",  " + category.value;
         this.main = this.main + ", " + main;
-        console.log('checkbox ' + this.checkbox);
 
       }
 

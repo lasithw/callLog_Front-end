@@ -12,6 +12,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class SummaryComponent implements OnInit {
 
+  searchText;
+  start;
+  end;
+
   model;
   data;
   call;
