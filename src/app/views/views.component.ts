@@ -97,7 +97,7 @@ export class ViewsComponent implements OnInit {
 
   onSubmit() {
     this.addCallLogData();
-    // this.refresh();
+    this.refresh();
     if (!error) {
       this.openDialog();
     }
@@ -165,7 +165,6 @@ export class ViewsComponent implements OnInit {
         this.main = this.main + ", " + main;
 
       }
-
     }
   };
 
