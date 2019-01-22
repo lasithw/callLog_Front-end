@@ -97,11 +97,14 @@ export class ViewsComponent implements OnInit {
 
   onSubmit() {
     this.addCallLogData();
-    this.refresh();
     if (!error) {
       this.openDialog();
     }
     this.deleteRow(this.selected.ID);
+    this.todayCall();
+    this.incomingCall();
+    this.outgoingCall();
+    this.getData()
   }
 
   openDialog(): void {
