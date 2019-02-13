@@ -10,7 +10,7 @@
         <span class="align-center"></span>
 
         <div class="col text-right">
-            <label class="loggedUser">Hi! {{user}}</label> 
+          <label class="loggedUser">Hi! {{user}}</label>
           <div ngbDropdown placement="bottom-right" class="d-inline-block">
             <button class="btn" id="dropdown" ngbDropdownToggle>More</button>
             <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdown">
@@ -27,21 +27,21 @@
     <div class="pageborder">
       <!-- user card -->
       <mat-card class="details">
-      <div class="row">
-        <mat-card class="user_card text-center" >
+        <div class="row">
+          <mat-card class="user_card text-center">
             <p>Today Call Count</p>
             <h2>{{count}}</h2>
-        </mat-card>
-        <mat-card class="user_card text-center">
-            <p>Incoming</p> 
-            <h2>{{inCallCount}}</h2> 
-        </mat-card>
-        <mat-card class="user_card text-center">
+          </mat-card>
+          <mat-card class="user_card text-center">
+            <p>Incoming</p>
+            <h2>{{inCallCount}}</h2>
+          </mat-card>
+          <mat-card class="user_card text-center">
             <p>Outgoing</p>
             <h2>{{outCallCount}}</h2>
-        </mat-card>
-      </div>
-    </mat-card>
+          </mat-card>
+        </div>
+      </mat-card>
       <!-- <mat-card class="user_card">
         <mat-card-content>
           <P>Today call count : {{count}}</P>
@@ -99,11 +99,11 @@
           <div class="check_card">
             <mat-card>
               <mat-card-title>
-                <b>Selected ID : {{SelectedID}}</b><br> 
+                <b>Selected ID : {{SelectedID}}</b><br>
                 <b>Agent Name: {{Agent}}</b>
               </mat-card-title>
               <mat-card-content>
-                <section class="example-section">
+                <!-- <section class="example-section">
                   <mat-checkbox class="example-margin" [(ngModel)]="allAlarms" #catallAlarm value="All Alarm" main="All Alarms"
                     (change)="checkValue($event, catallAlarm, 'All Alarms')">
                     <b>All Alarms</b>
@@ -187,12 +187,65 @@
                 <mat-checkbox class="example-margin" [(ngModel)]="otherOperators" #catotheroperation value="SLT,Dialog ext"
                   (change)="checkValue($event, catotheroperation, 'Other Operators')">
                   SLT, Dialog, ext
-                </mat-checkbox>
+                </mat-checkbox> -->
+
+                <section class="example-section">
+                  <mat-checkbox *ngFor="let i of catallAlarm" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'All Alarm')">
+                    {{i.category}}
+                  </mat-checkbox>
+
+                  <mat-checkbox *ngFor="let i of catwifi" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'WiFi')">
+                    {{i.category}}
+                  </mat-checkbox>
+
+                  <mat-checkbox *ngFor="let i of catcore" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Core Network')">
+                    {{i.category}}
+                  </mat-checkbox>
+
+                  <mat-checkbox *ngFor="let i of catpower" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Power Related')">
+                    {{i.category}}
+                  </mat-checkbox>
+
+                  <mat-checkbox *ngFor="let i of catother" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Other')">
+                    {{i.category}}
+                  </mat-checkbox>
+                </section>
+
+                <h3>Faults (Site/Cell/TRX Down)</h3>
+                <section class="example-section">
+                  <mat-checkbox *ngFor="let i of faultCat" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Faults (Site/Cell/TRX Down)')">
+                    {{i.category}}
+                  </mat-checkbox>
+                </section>
+
+                <h3>Maintenance</h3>
+                <section class="example-section">
+                  <mat-checkbox *ngFor="let i of mainCat" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Maintenance')">
+                    {{i.category}}
+                  </mat-checkbox>
+                </section>
+
+                <h3>Other Operators</h3>
+                <section class="example-section">
+                  <mat-checkbox *ngFor="let i of otherCat" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Other Operators')">
+                    {{i.category}}
+                  </mat-checkbox>
+                </section>
+
+                <div *ngFor="let i of cat">
+                <h3>{{i.main_category}}</h3>
+                <section class="example-section">
+                  <mat-checkbox *ngFor="let i of cat" class="example-margin" value="{{i.category}}" (change)="checkValue($event, i.category, 'Other Operators')">
+                    {{i.category}}
+                  </mat-checkbox>
+                </section>
+              </div>
 
                 <!-- button -->
                 <div class="button-row">
                   <button mat-raised-button (click)="refresh()">Back</button>
-                  <button mat-raised-button (click)="onSubmit()" color="primary">Submit</button>
+                  <button mat-raised-button (click)="open(content)" color="primary">Add</button>
+                  <button mat-raised-button (click)="onSubmit()" color="warn">Submit</button>
                 </div>
               </mat-card-content>
             </mat-card>
@@ -204,3 +257,30 @@
 
   <app-call-log-table></app-call-log-table>
 </div>
+
+<!-- modal -->
+<ng-template #content let-modal class="modal">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Details</h4>
+    <button type="button" class="close btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" name="mainCategory" [(ngModel)]=mainCategory placeholder="Main Category">
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" name="subCategory" [(ngModel)]=subCategory placeholder="Sub Category">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="add(); modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<pre>{{closeResult}}</pre>

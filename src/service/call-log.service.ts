@@ -59,6 +59,14 @@ export class CallLogService {
     return this.http.get(this.uri + '/data/delete/?i=' + id, httpOptions);
   }
 
+  getCheckbox(){
+    return this.http.get(this.uri + '/data/getCheckbox', httpOptions);
+  }
+  
+  addCategory(catData){
+    return this.http.post(this.uri + '/data/addCheckbox' , catData);
+  }
+
 }
 
 

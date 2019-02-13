@@ -13,6 +13,7 @@ export class CallLogTableComponent implements OnInit {
   data;
 
   ngOnInit() {
+    this.getCallLogData();
   }
 
   checked = false;

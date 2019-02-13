@@ -4,9 +4,7 @@ import { error } from 'util';
 
 import { CallLogService } from '../../service/call-log.service';
 import { AuthenticationService } from 'src/service/authentication.service';
-
-
-
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-views',
@@ -47,8 +45,14 @@ export class ViewsComponent implements OnInit {
   outCallCount: any;
   main: any;
   username: string;
+  checkboxes: any;
+  checkbox;
+  mainCategory: string = "";
+  subCategory: string = "";
+  closeResult: string;
 
   ngOnInit() {
+    this.getCheckbox();
   }
 
   name(): any {
@@ -81,7 +85,12 @@ export class ViewsComponent implements OnInit {
 
   dataSource = this.getData();
 
-  constructor(public dialog: MatDialog, public callLogService: CallLogService, private auth: AuthenticationService) { }
+  constructor(
+    public dialog: MatDialog,
+    public callLogService: CallLogService,
+    private auth: AuthenticationService,
+    private modalService: NgbModal,
+  ) { }
 
   data;
 
@@ -104,7 +113,8 @@ export class ViewsComponent implements OnInit {
     this.todayCall();
     this.incomingCall();
     this.outgoingCall();
-    this.getData()
+    this.getData();
+    this.refresh();
   }
 
   openDialog(): void {
@@ -134,7 +144,7 @@ export class ViewsComponent implements OnInit {
       user: this.user,
       callType: this.selected.CallType,
       agent: this.selected.Agent,
-      callerID: this.selected.CallerID,
+      callerID: (this.selected.CallerID).slice(-9,),
       callTime: this.selected.CallTime,
       event: this.selected.Event,
       holdTime: this.selected.HoldTime,
@@ -146,30 +156,98 @@ export class ViewsComponent implements OnInit {
       mainCategory: this.main
 
     }
+    console.log(callLogData);
     console.log(this.checkbox, this.main);
     this.callLogService.addCallLog(callLogData).subscribe((response) => {
       // console.log(response);
     });
   };
 
-  checkbox;
-
   checkValue(event, category, main) {
     if (event.checked) {
       // console.log(main);
       if (this.checkbox == undefined) {
-        this.checkbox = category.value;
+        this.checkbox = category;
         this.main = main;
-        console.log('main ' + this.main);
+        console.log('main ' + this.main + '  cat ' + this.checkbox);
 
       }
       else {
-        this.checkbox = this.checkbox + ",  " + category.value;
+        this.checkbox = this.checkbox + ",  " + category;
         this.main = this.main + ", " + main;
-
+        console.log('main ' + this.main + '  cat ' + this.checkbox);
       }
     }
   };
+
+  catallAlarm: Array<any> = [];
+  catwifi: Array<any> = [];
+  catcore: Array<any> = [];
+  catpower: Array<any> = [];
+  catother: Array<any> = [];
+  faultCat: Array<any> = [];
+  mainCat: Array<any> = [];
+  otherCat: Array<any> = [];
+  cat: Array<any> = [];
+
+  getCheckbox() {
+    this.catallAlarm = [];
+    this.catwifi = [];
+    this.catcore = [];
+    this.catpower = [];
+    this.catother = [];
+    this.faultCat = [];
+    this.mainCat = [];
+    this.otherCat = [];
+    this.cat = [];
+
+    this.callLogService.getCheckbox().subscribe(res => {
+      this.checkboxes = res;
+      // console.log(this.checkboxes);
+
+      (res as Array<any>).forEach(element => {
+
+        switch (element.main_category) {
+          case "All Alarms":
+            this.catallAlarm.push(element);
+            break;
+
+          case "WiFi":
+            this.catwifi.push(element);
+            break;
+
+          case "Core Network":
+            this.catcore.push(element);
+            break;
+
+          case "Power Related":
+            this.catpower.push(element);
+            break;
+
+          case "Other":
+            this.catother.push(element);
+            break;
+
+          case "Faults (Site/Cell/TRX Down)":
+            this.faultCat.push(element);
+            break;
+
+          case "Maintenance":
+            this.mainCat.push(element);
+            break;
+
+          case "Other Operators":
+            this.otherCat.push(element);
+            break;
+
+          default:
+            this.cat.push(element);
+            break;
+        }
+      });
+      console.log(this.cat);
+    });
+  }
 
   deleteRow(id) {
     this.callLogService.deleteRow(id).subscribe(res => {
@@ -179,5 +257,36 @@ export class ViewsComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  //modal
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  add() {
+    var catData = {
+      main_category: this.mainCategory,
+      category: this.subCategory,
+    }
+    this.callLogService.addCategory(catData).subscribe((response) => {
+      console.log(response);
+    });
+    // this.refresh();
+    this.getCheckbox();
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
